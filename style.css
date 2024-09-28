@@ -1,7 +1,7 @@
 /* General Body Styling */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f6f8;
+    background-color: #f9f9f9;
     margin: 0;
     padding: 0;
     display: flex;
@@ -10,23 +10,28 @@ body {
     height: 100vh;
 }
 
+h1 {
+    text-align: center;
+    color: #333;
+    margin-block-end: 0;
+    margin-block-start: 40px;
+}
+
 /* Form Container */
 form {
     background-color: white;
     padding: 40px;
     border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     max-width: 600px;  /* Increased width */
     width: 100%;
     box-sizing: border-box;
 }
 
-/* Form Labels */
 label {
     font-size: 16px;
     color: #333;
-    font-weight: normal;
-    margin-bottom: 8px;
+    font-weight: bold;
+    margin-bottom: 5px;
     display: block;
 }
 
@@ -35,6 +40,7 @@ input[type="text"],
 input[type="password"],
 input[type="email"],
 input[type="url"],
+textarea,
 select {
     width: 100%;
     padding: 14px;
@@ -45,6 +51,32 @@ select {
     box-sizing: border-box;
     transition: border-color 0.2s ease;
 }
+
+textarea {
+    resize: vertical;
+}
+
+input[readonly] {
+    background-color: #f0f0f0;
+    color: #777;
+}
+
+/* Buttons */
+button {
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+/* -------------------------lab1_group1---------------- */
 
 /* Input Hover & Focus Effects */
 input[type="text"]:focus,
@@ -101,17 +133,6 @@ img#profilePreview {
     gap: 15px;
 }
 
-/* Buttons */
-button {
-    padding: 12px 24px;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
 /* Submit Button */
 #submitButton {
     background-color: #3498db;
@@ -127,10 +148,6 @@ button {
 .cancel-button {
     background-color: #e74c3c;
     color: white;
-}
-
-button:hover {
-    opacity: 0.9;
 }
 
 /* Responsive Layout */
@@ -164,4 +181,87 @@ input:invalid {
 
 input:valid {
     border-color: #2ecc71;
+<<<<<<< HEAD
 }
+=======
+}
+
+/* -------------------------lab1_group1---------------- */
+
+/* -------------------------lab1_group2---------------- */
+.container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 2px;
+}
+
+#courseForm {
+    padding: 5px;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+button#createButton {
+    background-color: #4CAF50;
+    color: white;
+}
+
+button#updateButton {
+    background-color: #3498db;
+    color: white;
+}
+
+button#deleteButton {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.required {
+    color: red;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 500px;
+}
+
+.close {
+    color: red;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover, .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+/* -------------------------lab1_group2---------------- */
+>>>>>>> bcece54 (commit)
