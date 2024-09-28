@@ -1,0 +1,149 @@
+/* General Body Styling */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Form Container */
+form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Form Labels */
+label {
+    font-size: 14px;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 6px;
+    display: block;
+}
+
+/* Input Styles */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="url"],
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+/* Input Hover & Focus Effects */
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+}
+
+/* File Input */
+input[type="file"] {
+    margin-bottom: 10px;
+}
+
+/* Error Messages */
+.error-message {
+    color: #e74c3c;
+    font-size: 12px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* Profile Image Preview */
+img#profilePreview {
+    display: block;
+    width: 100px;
+    height: 100px;
+    border: 2px solid #ddd;
+    border-radius: 50%;
+    margin: 10px 0;
+    object-fit: cover;
+}
+
+/* Button Group */
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Buttons */
+button {
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Submit Button */
+#submitButton {
+    background-color: #007bff;
+    color: white;
+}
+
+#submitButton:disabled {
+    background-color: #b0c7ff;
+    cursor: not-allowed;
+}
+
+/* Cancel Button */
+.cancel-button {
+    background-color: #e74c3c;
+    color: white;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+/* Responsive Layout */
+@media (max-width: 600px) {
+    form {
+        padding: 20px;
+    }
+
+    .button-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* Read-only Inputs */
+.read-only {
+    background-color: #f1f3f5;
+    color: #6c757d;
+}
+
+/* Enhancements for accessibility */
+input:invalid {
+    border-color: #e74c3c;
+}
+
+input:valid {
+    border-color: #28a745;
+}
