@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Hci2025</title>
 </head>
+
 <body>
     <!-- Header and menu (unchanged) -->
     <header id="mainHeader">
@@ -27,33 +29,158 @@
     </div>
 
     <!-- Main Content -->
-     <main>
+    <main>
         <section class="content" id="lab1-content">
-              <h1>Lab 1 - Introduction to Course Management</h1>
-  
-          <section class="lab-groups">
-              <div class="group-card" onclick="toggleGroup('group1')">
-                  <h2>Group 1: Basics of HTML & CSS</h2>
-                  <p>Click to view more</p>
-              </div>
-              <div id="group1" class="group-content">
-                  <p>This group covers the basics of HTML structure, styling with CSS, and how to design a simple webpage layout.</p>
-              </div>
-  
-              <div class="group-card" onclick="toggleGroup('group2')">
-                  <h2>Group 2: JavaScript Fundamentals</h2>
-                  <p>Click to view more</p>
-              </div>
-              <div id="group2" class="group-content">
-                  <p>In this group, we dive into JavaScript basics, including functions, variables, and event handling.</p>
-              </div>
-          </section>
+            <section class="lab-groups">
+                <div class="group-card" onclick="toggleGroup('group1')">
+                    <h2>Group 1: Creating Account</h2>
+                    <p>Click to view more</p>
+                </div>
+                <div id="group1" class="group-content">
+                    <form id="accountForm">
+                        <div>
+                            <label for="username">Username: </label>
+                            <input type="text" name="username" maxlength="255" required
+                                placeholder="Enter your username">
+                            <span class="error-message" id="usernameError"></span> <!-- Inline error message -->
+                        </div>
+
+                        <div>
+                            <label for="password">Password: </label>
+                            <input type="password" name="password" minlength="8" maxlength="255" required
+                                placeholder="Password">
+                            <button onclick="togglePassword()">Show/Hide</button>
+                            <span class="error-message" id="passwordError"></span> <!-- Inline error message -->
+                        </div>
+
+                        <div>
+                            <label for="email">Email Address</label>
+                            <input type="email" name="email" maxlength="255" required placeholder="Enter your email"
+                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                            <span class="error-message" id="emailError"></span> <!-- Inline error message -->
+                        </div>
+
+                        <div>
+                            <label for="fullName">Full Name (Optional):</label>
+                            <input type="text" name="fullName" placeholder="Enter your full name">
+                        </div>
+
+                        <div>
+                            <label for="role">Role: </label>
+                            <select name="role" required title="Select a role">
+                                <option value="User">User</option>
+                                <option value="Admin">Admin</option>
+                            </select>
+                            <span class="error-message" id="roleError"></span> <!-- Inline error message -->
+                        </div>
+
+                        <div>
+                            <label for="profilePicture">Profile Picture:</label>
+                            <input type="file" name="profilePicture" accept="image/*" id="profilePictureInput">
+                            <input type="url" name="profilePictureUrl" placeholder="Or enter image URL">
+                            <div>
+                                <img id="profilePreview" src="#" alt="Profile Preview"
+                                    style="display: none; width: 100px; height: 100px;">
+                            </div>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="createdAt">Account Created At</label>
+                            <input type="text" id="createdAt" name="createdAt" readonly>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="lastUpdatedAt">Last Updated At</label>
+                            <input type="text" id="lastUpdatedAt" name="lastUpdatedAt" readonly>
+                        </div>
+
+                        <!-- Buttons: Submit and Cancel -->
+                        <div class="button-group">
+                            <button type="submit" id="submitButton" disabled>Create Account</button>
+                            <button type="button" id="cancelButton" class="cancel-button">Cancel</button>
+                            <!-- New Cancel Button -->
+                        </div>
+                    </form>
+
+                </div>
+
+                <div class="group-card" onclick="toggleGroup('group2')">
+                    <h2>Group 2: Course Management</h2>
+                    <p>Click to view more</p>
+                </div>
+                <div id="group2" class="group-content">
+                    <div class="container">
+                        <h1>Course Management</h1>
+                        <form id="courseForm">
+                            <!-- Course ID (read-only) -->
+                            <div class="form-group">
+                                <label for="courseId">Course ID:</label>
+                                <input type="text" id="courseId" name="courseId" readonly>
+                            </div>
+
+                            <!-- Course Name -->
+                            <div class="form-group">
+                                <label for="courseName">Course Name <span class="required">*</span>:</label>
+                                <input type="text" id="courseName" name="courseName" maxlength="255" required>
+                            </div>
+
+                            <!-- Course Description -->
+                            <div class="form-group">
+                                <label for="courseDescription">Course Description (Optional):</label>
+                                <textarea id="courseDescription" name="courseDescription" rows="5"></textarea>
+                            </div>
+
+                            <!-- Instructor (Created By) -->
+                            <div class="form-group">
+                                <label for="createdBy">Instructor:</label>
+                                <select id="createdBy" name="createdBy" required>
+                                    <option value="" disabled selected>Select an Instructor</option>
+                                    <!-- Options should be populated dynamically -->
+                                    <option value="1">Instructor 1</option>
+                                    <option value="2">Instructor 2</option>
+                                </select>
+                            </div>
+
+                            <!-- Created At (read-only) -->
+                            <div class="form-group">
+                                <label for="createdAt">Created At:</label>
+                                <input type="text" id="createdAt" name="createdAt" readonly>
+                            </div>
+
+                            <!-- Updated At (read-only) -->
+                            <div class="form-group">
+                                <label for="updatedAt">Last Updated:</label>
+                                <input type="text" id="updatedAt" name="updatedAt" readonly>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="form-actions">
+                                <button type="submit" id="createButton">Create Course</button>
+                                <button type="button" id="updateButton">Update Course</button>
+                                <button type="button" id="deleteButton" class="danger">Delete Course</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Optional Modal for Viewing Course Details -->
+                    <div id="viewModal" class="modal">
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <h2>Course Details</h2>
+                            Course details view-only content
+                        </div>
+                    </div>
+                </div>
+            </section>
         </section>
 
         <section class="content" id="lab2-content" style="display: none;">
             <h1>Lab 2</h1>
             <p>This is the content for Lab 2.</p>
         </section>
-     </main>
+    </main>
+
+    <script src="script.js"></script>
 </body>
+
 </html>
