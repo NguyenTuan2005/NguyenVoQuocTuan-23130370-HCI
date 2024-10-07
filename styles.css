@@ -1,11 +1,61 @@
-/* General Body Styling */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f9f9f9;
+* {
     margin: 0;
     padding: 0;
-    justify-content: center;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(100, 100);
+        opacity: 0;
+    }
+}
+
+@keyframes buttonLoading {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+/* General Body Styling */
+body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     height: 100vh;
+}
+
+/* Hide scrollbar and ensure iframe takes full width */
+iframe {
+    width: 100%; 
+    height: 2200px;
+    border: none;
+    overflow: hidden;
 }
 
 /* Header Styling */
@@ -27,12 +77,43 @@ nav {
     padding: 1rem;
 }
 
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    margin-block-end: 0;
+    margin-block-start: 40px;
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+    position: relative;
+    animation: slideUp 0.5s ease-out;
+    animation-fill-mode: backwards;
+}
+
+input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+}
+
 .menu {
     list-style: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
     display: flex;
+}
+
+/* Style for active page */
+.menu a.active {
+    color: #ffb74d;
 }
 
 .menu li {
@@ -56,15 +137,22 @@ nav {
 
 /* Mini Menu (Labs) */
 .mini-menu {
-    margin-top: 60px;
+    position: fixed;
+    width: 100%;
     background-color: #fff;
     padding: 10px;
+    z-index: 999;
 }
 
 .lab-menu {
     list-style: none;
     padding: 0;
     margin: 0;
+}
+
+/* Style for active lab in mini-menu */
+.lab-menu a.active {
+    color: #ffb74d;
 }
 
 .lab-menu li {
@@ -87,7 +175,7 @@ nav {
 .group-card {
     background-color: #f0f0f0;
     padding: 20px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -99,10 +187,17 @@ nav {
 
 .group-content {
     background-color: #fff;
-    padding: 15px;
     margin-bottom: 15px;
     border-left: 4px solid #0044cc;
-    display: none;
+    opacity: 0; /* Hidden initially */
+    max-height: 0; /* Collapse height initially */
+    overflow: hidden; /* Prevent content overflow */
+    transition: opacity 0.3s ease-in-out, max-height 0.3s ease-in-out; /* Smooth transition */
+}
+
+.group-content.show {
+    opacity: 1; /* Fully visible */
+    max-height: 1000px; /* A large enough value for content to expand, adjust as needed */
 }
 
 .group-card h2,
@@ -112,8 +207,9 @@ nav {
 
 /* Main Content Styling */
 main {
-    margin-top: 80px;
-    /* Adjust to make room for fixed header */
+    margin-top: 53px;
+    padding-top: 60px;
+    /* Adjust to make room for fixed header */  
     padding: 20px;
 }
 
@@ -124,13 +220,6 @@ main {
 .content p {
     color: #555;
     align-content: center;
-}
-
-h1 {
-    text-align: center;
-    color: #333;
-    margin-block-end: 0;
-    margin-block-start: 40px;
 }
 
 /* Form Container */
@@ -146,10 +235,11 @@ form {
 
 label {
     font-size: 16px;
-    color: #333;
+    color: #555;
     font-weight: bold;
     margin-bottom: 5px;
     display: block;
+    transition: color 0.3s ease;
 }
 
 /* Input Styles */
@@ -164,7 +254,6 @@ select {
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 16px;
-    margin-bottom: 15px;
     box-sizing: border-box;
     transition: border-color 0.2s ease;
 }
@@ -194,6 +283,18 @@ button:hover {
 }
 
 /* -------------------------lab1_group1---------------- */
+
+#accountForm {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: auto;
+    width: fit-content;
+    animation: slideUp 0.5s ease-out;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
 /* Input Hover & Focus Effects */
 input[type="text"]:focus,
@@ -247,6 +348,7 @@ img#profilePreview {
 .button-group {
     display: flex;
     justify-content: flex-start;
+    margin: 10px 0;
     gap: 15px;
 }
 
@@ -303,17 +405,16 @@ input:valid {
 /* -------------------------lab1_group1---------------- */
 
 /* -------------------------lab1_group2---------------- */
-.container {
+.course-container {
     background-color: white;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-width: 600px;
-    width: 100%;
-}
-
-.form-group {
-    margin-bottom: 2px;
+    margin: auto;
+    width: fit-content;
+    animation: slideUp 0.5s ease-out;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 #courseForm {
@@ -329,16 +430,19 @@ input:valid {
 button#createButton {
     background-color: #4CAF50;
     color: white;
+    margin: 0 5px;
 }
 
 button#updateButton {
     background-color: #3498db;
     color: white;
+    margin: 0 5px;
 }
 
 button#deleteButton {
     background-color: #e74c3c;
     color: white;
+    margin: 0 5px;
 }
 
 .required {
@@ -380,3 +484,363 @@ button#deleteButton {
 }
 
 /* -------------------------lab1_group2---------------- */
+
+/* -------------------------lab2_group1---------------- */
+
+.login-container {
+    background: white;
+    padding: 2rem 2rem;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    margin: auto;
+    width: fit-content;
+    max-width: 400px;
+    position: relative;
+    animation: slideUp 0.5s ease-out;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+}
+
+.close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+    transition: all 0.3s ease;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.close-button:hover {
+    color: #333;
+    background-color: #f5f5f5;
+}
+
+#lab2-content h1 {
+    animation: slideUp 0.5s ease-out 0.2s backwards;
+    margin-top: 20px;
+}
+
+.form-group:nth-child(1) { animation-delay: 0.3s; }
+.form-group:nth-child(2) { animation-delay: 0.4s; }
+
+.form-group:focus-within label {
+    color: #4A90E2;
+}
+
+input:focus {
+    outline: none;
+    border-color: #4A90E2;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+/* Custom Checkbox */
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    margin: 2px 0;
+    animation: slideUp 0.5s ease-out 0.5s backwards;
+}
+
+.custom-checkbox {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+}
+
+.custom-checkbox input {
+    position: absolute;
+    cursor: pointer;
+}
+
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 18px;
+    height: 18px;
+    background-color: #f8f9fa;
+    border: 2px solid #ddd;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.custom-checkbox input:checked ~ .checkmark {
+    background-color: #4A90E2;
+    border-color: #4A90E2;
+}
+
+.checkmark:after {
+    content: '';
+    position: absolute;
+    display: none;
+    left: 5px;
+    top: 2px;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.custom-checkbox input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Message Styles */
+.message {
+    padding: 0.8rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    animation: slideUp 0.3s ease-out;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+.message.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.message i {
+    margin-right: 8px;
+}
+
+.message.error {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: var(--error-color);
+}
+
+.message.success {
+    background-color: rgba(40, 167, 69, 0.1);
+    color: var(--success-color);
+}
+
+.password-toggle {
+    position: absolute;
+    right: 1rem;
+    top: 2.3rem;
+    color: #666;
+    cursor: pointer;
+    padding: 5px;
+    transition: all 0.3s ease;
+}
+
+.password-toggle:hover {
+    color: #4A90E2;
+    transform: scale(1.1);
+}
+/* Button Styles */
+.login-button {
+    width: 100%;
+    padding: 0.8rem;
+    background: #4A90E2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 1rem;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: slideUp 0.5s ease-out 0.5s backwards;
+}
+
+.login-button:hover {
+    background: #357ABD;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.2);
+}
+
+.login-button:active {
+    transform: translateY(1px);
+}
+
+.login-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+}
+
+.login-button:focus:not(:active)::after {
+    animation: ripple 1s ease-out;
+}
+
+.social-login {
+    margin: 1rem 0;
+    text-align: center;
+    animation: slideUp 0.5s ease-out 0.6s backwards;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 1rem 0;
+    animation: slideUp 0.5s ease-out 0.5s backwards;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #ddd;
+    transition: border-color 0.3s ease;
+}
+
+.divider:hover::before,
+.divider:hover::after {
+    border-color: #4A90E2;
+}
+
+.divider span {
+    padding: 0 10px;
+    color: #666;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+/* Social Buttons */
+.social-button {
+    width: 100%;
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    background: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.social-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.social-button:hover::before {
+    left: 100%;
+}
+
+.social-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-color: currentColor;
+}
+
+.social-button:active {
+    transform: translateY(1px);
+}
+
+.social-button i {
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+}
+
+.social-button:hover i {
+    transform: scale(1.1);
+}
+
+.social-button.google {
+    color: #DB4437;
+}
+
+.social-button.github {
+    color: #333;
+}
+
+.social-button.facebook {
+    color: #1a73e8;
+}
+
+.links a {
+    color: #4A90E2;
+    text-decoration: none;
+    margin: 0 0.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.links a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    bottom: -2px;
+    left: 0;
+    background-color: #4A90E2;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.links a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.links a:hover {
+    color: #357ABD;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .login-container {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+}
+
+/* Loading animation for button */
+.loading {
+    background: linear-gradient(90deg, #4A90E2 0%, #357ABD 50%, #4A90E2 100%);
+    background-size: 200% 100%;
+    animation: buttonLoading 1.5s infinite;
+    pointer-events: none;
+}
+/* -------------------------lab2_group1---------------- */

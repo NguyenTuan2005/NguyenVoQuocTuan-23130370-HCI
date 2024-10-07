@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Hci2025</title>
+</head>
+
+<body>
+    <!-- Header and menu (unchanged) -->
+    <header id="mainHeader">
+        <nav>
+            <ul class="menu">
+                <li><a href="index.html" id="home-tab" >Home</a></li>
+                <li><a href="about.html" id="about-tab" >About</a></li>
+                <li><a href="labs.html" id="labs-tab" >Labs</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Mini Menu for Labs (hidden by default) -->
+    <div id="lab-menu" class="mini-menu">
+        <ul class="lab-menu">
+            <li><a href="lab1.html" id="lab1-tab">Lab 1</a></li>
+            <li><a href="lab2.html" id="lab2-tab">Lab 2</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <section class="content" id="lab2-content">
+            <section class="lab-groups">
+                <div class="group-card" onclick="toggleGroup('group1')">
+                    <h2>Group 1: Login</h2>
+                    <p>Click to view more</p>
+                </div>
+                <div id="group1" class="group-content">
+                    <div class="login-container">
+                        <button class="close-button" aria-label="Close">x</button>
+                        <h1>Login to your account</h1>
+                        
+                        <div id="message" class="message" style="display: none;"></div>
+                        
+                        <form id="loginForm">
+                            <div class="form-group">
+                                <label for="email">Email or Username</label>
+                                <input type="text" id="email" name="email" required placeholder="Enter your email or username"> 
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" id="password" name="password" required placeholder="Enter your password">
+                                <i class="password-toggle fas fa-eye" onclick="togglePassword()"></i>
+                            </div>
+                            
+                            <div class="checkbox-wrapper">
+                                <label class="custom-checkbox">
+                                    <input type="checkbox" id="remember">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <span>Remember me</span>
+                            </div>
+                
+                            <button type="submit" class="login-button">
+                                <span>Login</span>
+                                <div class="spinner"></div>
+                            </button>
+                
+                            <div class="divider">
+                                <span>Or continue with</span>
+                            </div>
+                
+                            <div class="social-login">
+                                <button type="button" class="social-button google" onclick="socialLogin('google')">
+                                    <i class="fab fa-google"></i>
+                                    Login with Google
+                                </button>
+                                <button type="button" class="social-button github" onclick="socialLogin('github')">
+                                    <i class="fab fa-github"></i>
+                                    Login with GitHub
+                                </button>
+                                <button type="button" class="social-button facebook" onclick="socialLogin('facebook')">
+                                    <i class="fab fa-facebook"></i>
+                                    Login with Facebook
+                                </button>
+                            </div>
+                
+                            <div class="links">
+                                <a href="#forgot-password">Forgot Password?</a>
+                                •
+                                <a href="#signup">Sign Up</a>
+                            </div>
+                        </form>
+                    </div>                
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

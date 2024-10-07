@@ -1,43 +1,24 @@
+//-----------hightlight navigation bar----------------------
+// Get current page URL
+const currentPage = window.location.pathname.split('/').pop();
+
+// Add active class to main navigation
+if (currentPage.includes('lab')) {
+    document.querySelector('.menu a[href="labs.html"]').classList.add('active');
+} else {
+    document.querySelector(`.menu a[href="${currentPage}"]`)?.classList.add('active');
+}
+
+// Add active class to lab menu
+if (currentPage === 'labs.html') {
+    // When on labs.html, highlight Lab 1 since it's shown by default
+    document.querySelector('.lab-menu a[href="lab1.html"]').classList.add('active');
+} else if (currentPage.includes('lab')) {
+    // For other lab pages, highlight the corresponding lab link
+    document.querySelector(`.lab-menu a[href="${currentPage}"]`)?.classList.add('active');
+}
+//-----------hightlight navigation bar----------------------
 document.addEventListener('DOMContentLoaded', function () {
-    // Function to show Home page
-    window.showHome = function () {
-        hideAllContents();
-        document.getElementById('home-content').style.display = 'block';
-        document.getElementById('lab-menu').style.display = 'none'; // Hide mini menu
-    };
-
-    // Function to show About page
-    window.showAbout = function () {
-        hideAllContents();
-        document.getElementById('about-content').style.display = 'block';
-        document.getElementById('lab-menu').style.display = 'none'; // Hide mini menu
-    };
-
-    // Function to show Lab 1 content
-    window.showLab1 = function () {
-        hideLabContents();
-        document.getElementById('lab1-content').style.display = 'block';
-    };
-
-    // Function to show Lab 2 content
-    window.showLab2 = function () {
-        hideLabContents();
-        document.getElementById('lab2-content').style.display = 'block';
-    };
-
-    // Hide all main contents
-    function hideAllContents() {
-        document.getElementById('home-content').style.display = 'none';
-        document.getElementById('about-content').style.display = 'none';
-        document.getElementById('labs-content').style.display = 'none';
-        hideLabContents();
-    }
-
-    // Hide all lab-specific content
-    function hideLabContents() {
-        document.getElementById('lab1-content').style.display = 'none';
-        document.getElementById('lab2-content').style.display = 'none';
-    }
     /* -------------------------lab1_group2---------------- */
     const courseForm = document.getElementById('courseForm');
     const courseId = document.getElementById('courseId');
@@ -88,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
 /* -------------------------lab1_group1---------------- */
 const form = document.getElementById('accountForm');
 const submitButton = document.getElementById('submitButton');
-const createdAt = document.getElementById('createdAt');
+const accCreatedAt = document.getElementById('accCreatedAt');
 const lastUpdatedAt = document.getElementById('lastUpdatedAt');
 const profilePictureInput = document.getElementById('profilePictureInput');
 const profilePreview = document.getElementById('profilePreview');
@@ -120,7 +101,7 @@ profilePictureInput.addEventListener('change', function (e) {
 
 // Set initial timestamps
 const now = new Date().toLocaleString();
-createdAt.value = now;
+accCreatedAt.value = now;
 lastUpdatedAt.value = now;
 
 // Function to check if all required fields are valid
@@ -162,9 +143,55 @@ checkFormValidity();
 // Toggling Group Content
 function toggleGroup(groupId) {
     var group = document.getElementById(groupId);
-    if (group.style.display === "none" || group.style.display === "") {
-        group.style.display = "block";
+
+    if (group.classList.contains("show")) {
+        // When hiding
+        group.style.maxHeight = group.scrollHeight + "px"; // Set height to content height
+        group.style.opacity = "1"; // Ensure it's visible before collapsing
+
+        // Trigger the collapse
+        setTimeout(function() {
+            group.style.maxHeight = "0px"; // Collapse height
+            group.style.opacity = "0"; // Fade out
+        }, 10);
+
+        // Remove the 'show' class after the transition
+        setTimeout(function() {
+            group.classList.remove("show");
+            group.style.display = "none"; // Optional: remove from layout after hiding
+        }, 300); // Match transition duration
     } else {
-        group.style.display = "none";
+        // When showing
+        group.style.display = "block"; // Make the element visible
+        group.style.maxHeight = "0px"; // Start collapsed
+        group.style.opacity = "0"; // Start invisible
+        
+        // Trigger expansion
+        setTimeout(function() {
+            group.style.maxHeight = group.scrollHeight + "px"; // Expand to fit content
+            group.style.opacity = "1"; // Fade in
+        }, 10);
+
+        // Add the 'show' class after transition
+        setTimeout(function() {
+            group.classList.add("show");
+        }, 300); // Match transition duration
     }
 }
+
+/* -------------------------lab2_group1---------------- */
+// function togglePassword() {
+//     const passwordInput = document.getElementById('password');
+//     const toggleIcon = document.querySelector('.password-toggle');
+    
+//     if (passwordInput.type === 'password') {
+//         passwordInput.type = 'text';
+//         toggleIcon.classList.remove('fa-eye');
+//         toggleIcon.classList.add('fa-eye-slash');
+//     } else {
+//         passwordInput.type = 'password';
+//         toggleIcon.classList.remove('fa-eye-slash');
+//         toggleIcon.classList.add('fa-eye');
+//     }
+// }
+/* -------------------------lab2_group1---------------- */

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Hci2025</title>
+</head>
+
+<body>
+    <!-- Header and menu (unchanged) -->
+    <header id="mainHeader">
+        <nav>
+            <ul class="menu">
+                <li><a href="index.html" id="home-tab">Home</a></li>
+                <li><a href="about.html" id="about-tab">About</a></li>
+                <li><a href="labs.html" id="labs-tab">Labs</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Mini Menu for Labs (hidden by default) -->
+    <div id="lab-menu" class="mini-menu">
+        <ul class="lab-menu">
+            <li><a href="lab1.html" id="lab1-tab">Lab 1</a></li>
+            <li><a href="lab2.html" id="lab2-tab">Lab 2</a></li>
+        </ul>
+    </div>
+
+    <!-- Content Display Area -->
+    <main>
+        <!-- iframe to display lab content -->
+        <iframe name="lab-frame" src="lab1.html#content-only" scrolling="no"></iframe>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

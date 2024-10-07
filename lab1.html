@@ -5,6 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Hide header and mini-menu when viewed in iframe */
+        body.content-only header,
+        body.content-only #lab-menu {
+            display: none;
+        }
+
+        /* Add some margin when in content-only mode */
+        body.content-only main {
+            margin: 20px;
+        }
+    </style>
     <title>Hci2025</title>
 </head>
 
@@ -13,9 +25,9 @@
     <header id="mainHeader">
         <nav>
             <ul class="menu">
-                <li><a href="index.html" id="home-tab" onclick="showHome()">Home</a></li>
-                <li><a href="about.html" id="about-tab" onclick="showAbout()">About</a></li>
-                <li><a href="lab1.html" id="labs-tab" onclick="showLab1()">Labs</a></li>
+                <li><a href="index.html" id="home-tab" >Home</a></li>
+                <li><a href="about.html" id="about-tab" >About</a></li>
+                <li><a href="labs.html" id="labs-tab">Labs</a></li>
             </ul>
         </nav>
     </header>
@@ -23,8 +35,8 @@
     <!-- Mini Menu for Labs (hidden by default) -->
     <div id="lab-menu" class="mini-menu">
         <ul class="lab-menu">
-            <li><a href="lab1.html" id="lab1-tab" onclick="showLab1()">Lab 1</a></li>
-            <li><a href="#" id="lab2-tab" onclick="showLab2()">Lab 2</a></li>
+            <li><a href="lab1.html" id="lab1-tab">Lab 1</a></li>
+            <li><a href="lab2.html" id="lab2-tab">Lab 2</a></li>
         </ul>
     </div>
 
@@ -38,14 +50,14 @@
                 </div>
                 <div id="group1" class="group-content">
                     <form id="accountForm">
-                        <div>
+                        <div class="form-group">
                             <label for="username">Username: </label>
                             <input type="text" name="username" maxlength="255" required
                                 placeholder="Enter your username">
                             <span class="error-message" id="usernameError"></span> <!-- Inline error message -->
                         </div>
 
-                        <div>
+                        <div class="form-group">
                             <label for="password">Password: </label>
                             <input type="password" name="password" minlength="8" maxlength="255" required
                                 placeholder="Password">
@@ -85,8 +97,8 @@
                         </div>
 
                         <div class="form-field">
-                            <label for="createdAt">Account Created At</label>
-                            <input type="text" id="createdAt" name="createdAt" readonly>
+                            <label for="accCreatedAt">Account Created At</label>
+                            <input type="text" id="accCreatedAt" name="accCreatedAt" readonly>
                         </div>
 
                         <div class="form-field">
@@ -109,7 +121,7 @@
                     <p>Click to view more</p>
                 </div>
                 <div id="group2" class="group-content">
-                    <div class="container">
+                    <div class="course-container">
                         <h1>Course Management</h1>
                         <form id="courseForm">
                             <!-- Course ID (read-only) -->
@@ -173,13 +185,14 @@
                 </div>
             </section>
         </section>
-
-        <section class="content" id="lab2-content" style="display: none;">
-            <h1>Lab 2</h1>
-            <p>This is the content for Lab 2.</p>
-        </section>
     </main>
 
+    <script>
+        // Check if page is loaded with #content-only hash
+        if (window.location.hash === '#content-only') {
+            document.body.classList.add('content-only');
+        }
+    </script>
     <script src="script.js"></script>
 </body>
 
