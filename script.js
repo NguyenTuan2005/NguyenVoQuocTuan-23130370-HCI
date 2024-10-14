@@ -56,14 +56,18 @@ const AccountFormHandler = {
 
     initializeTimestamps() {
         const now = DateUtils.getCurrentTimestamp('localeString');
-        this.accCreatedAt.value = now;
-        this.lastUpdatedAt.value = now;
+        if (this.accCreatedAt != null && !this.accCreatedAt.value) {
+            this.accCreatedAt.value = now;
+        }
+        if (this.lastUpdatedAt != null && !this.lastUpdatedAt.value) {
+            this.lastUpdatedAt.value = now;
+        }
     },
 
     setupEventListeners() {
-        this.profilePictureInput.addEventListener('change', this.handleProfilePicture.bind(this));
-        this.cancelButton.addEventListener('click', () => window.history.back());
-        this.form.addEventListener('submit', this.handleSubmit.bind(this));
+        this.profilePictureInput?.addEventListener('change', this.handleProfilePicture.bind(this));
+        this.cancelButton?.addEventListener('click', () => window.history.back());
+        this.form?.addEventListener('submit', this.handleSubmit.bind(this));
         this.setupInputValidation();
     },
 
@@ -82,7 +86,7 @@ const AccountFormHandler = {
     },
 
     setupInputValidation() {
-        this.form.querySelectorAll('input, select').forEach(input => {
+        this.form?.querySelectorAll('input, select').forEach(input => {
             input.addEventListener('input', () => {
                 const errorMessage = input.nextElementSibling;
                 errorMessage.textContent = input.checkValidity() ? '' : input.validationMessage;
@@ -92,7 +96,12 @@ const AccountFormHandler = {
     },
 
     checkFormValidity() {
-        this.submitButton.disabled = !this.form.checkValidity();
+        if (this.form) {
+            this.submitButton.disabled = !this.form.checkValidity();
+        } else {
+            console.warn('Form element not found');
+            this.submitButton.disabled = true; // Disable button if form not found
+        }
     },
 
     handleSubmit(e) {
@@ -266,16 +275,18 @@ const StudyMaterialApp = {
     },
 
     addEventListeners() {
-        this.tabContainer.addEventListener('click', (event) => {
-            if (event.target.classList.contains('tab-link')) {
-                this.openTab(event);
-            } else if (event.target.tagName === 'BUTTON' && event.target.textContent === 'Add Lecture') {
-                this.subject = event.target.parentElement.id;
-                this.showAddLectureModal(); // Show modal instead of prompt
-            }
-        });
+        if (this.tabContainer) {
+            this.tabContainer.addEventListener('click', (event) => {
+                if (event.target.classList.contains('tab-link')) {
+                    this.openTab(event);
+                } else if (event.target.tagName === 'BUTTON' && event.target.textContent === 'Add Lecture') {
+                    this.subject = event.target.parentElement.id;
+                    this.showAddLectureModal(); // Show modal instead of prompt
+                }
+            });
+        }
 
-        this.modal.querySelector('.close-button').addEventListener('click', this.closePreview.bind(this));
+        this.modal?.querySelector('.close-button').addEventListener('click', this.closePreview.bind(this));
 
         document.getElementById('submit-lecture').addEventListener('click', () => this.addLecture()); // Submit button for modal
         document.querySelector('.close-button').addEventListener('click', this.closeAddLectureModal.bind(this));
