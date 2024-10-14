@@ -6,6 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        #group2 {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            grid-template-rows: 2fr 1fr;
+            overflow: hidden;
+        }
+    </style>
     <title>Hci2025</title>
 </head>
 
@@ -26,6 +34,7 @@
         <ul class="lab-menu">
             <li><a href="lab1.html" id="lab1-tab">Lab 1</a></li>
             <li><a href="lab2.html" id="lab2-tab">Lab 2</a></li>
+            <li><a href="lab3.html" id="lab3-tab">Lab 3</a></li>
         </ul>
     </div>
 
@@ -97,6 +106,103 @@
                         </form>
                     </div>
                 </div>
+
+                <div class="group-card" onclick="toggleGroup('group2')">
+                    <h2>Group 2: Coding exercise</h2>
+                    <p>Click to view more</p>
+                </div>
+                <div id="group2" class="group-content">
+                    <div class="container">
+                        <section class="menu-section">
+                            <div class="menu-toggle">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <div class="menu-content">
+                                <div class="lesson-list">
+                                    <div class="lesson-category">
+                                        <div class="category-header">
+                                            <span>Basic Programming</span>
+                                        </div>
+                                        <div class="lessons">
+                                            <div class="lesson-item">1) Hello World <span
+                                                    class="difficulty easy">Easy</span></div>
+                                            <div class="lesson-item completed">2) Variables <span
+                                                    class="difficulty easy">Easy</span></div>
+                                            <div class="lesson-item">3) Loops <span
+                                                    class="difficulty medium">Medium</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- New lesson subject section -->
+                                <div class="lesson-subject">
+                                    <div class="content">
+                                        <h2>Variables in Programming</h2>
+                                        <p>Learn how to declare and use variables in programming...</p>
+                                    </div>
+                                    <div class="example">
+                                        <h3>Example:</h3>
+                                        <pre>
+                        int number = 42;
+                        String text = "Hello";
+                                        </pre>
+                                    </div>
+                                    <div class="hints">
+                                        <h3>Hints:</h3>
+                                        <ul>
+                                            <li>Remember to initialize variables before using them</li>
+                                            <li>Choose appropriate data types for your variables</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Code section stays the same, just moved to top position -->
+                        <section class="code-section">
+                            <div class="language-bar">
+                                <select class="language-select">
+                                    <option value="java">Java</option>
+                                    <option value="python">Python</option>
+                                    <option value="cpp">C++</option>
+                                </select>
+                                <button class="submit-button">Submit</button>
+                            </div>
+                            <textarea class="code-editor" placeholder="Write your code here..."></textarea>
+                        </section>
+
+                        <!-- Test cases section stays the same, just moved to bottom position -->
+                        <section class="testcases-section">
+                            <div class="testcase-item success">
+                                <div class="testcase-header">Test Case #1</div>
+                                <div class="testcase-content">Input: 5, Expected: 25, Output: 25</div>
+                            </div>
+                            <div class="testcase-item error">
+                                <div class="testcase-header">Test Case #2</div>
+                                <div class="testcase-content">Input: -3, Expected: 9, Output: -9</div>
+                                <div class="testcase-hint">Hint: Remember to handle negative numbers</div>
+                            </div>
+                        </section>
+
+                        <div class="modal" id="success-modal">
+                            <h2>Congratulations!</h2>
+                            <p>You have passed all test cases!</p>
+                            <div class="modal-buttons">
+                                <button class="modal-button stay">Stay</button>
+                                <button class="modal-button next">Next Lesson</button>
+                            </div>
+                        </div>
+
+                        <div class="modal" id="error-modal">
+                            <h2>Not Quite There</h2>
+                            <p>You didn't pass all test cases</p>
+                            <p>Score: <span class="score">8.5</span>/10</p>
+                            <div class="modal-buttons">
+                                <button class="modal-button stay">Try Again</button>
+                            </div>
+                        </div>
+                    </div>
             </section>
         </section>
     </main>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        #group2 {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            grid-template-rows: 2fr 1fr;
+            overflow: hidden;
+        }
+    </style>
+    <title>Hci2025</title>
+</head>
+
+<body>
+    <!-- Header and menu (unchanged) -->
+    <header id="mainHeader">
+        <nav>
+            <ul class="menu">
+                <li><a href="index.html" id="home-tab">Home</a></li>
+                <li><a href="about.html" id="about-tab">About</a></li>
+                <li><a href="labs.html" id="labs-tab">Labs</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Mini Menu for Labs (hidden by default) -->
+    <div id="lab-menu" class="mini-menu">
+        <ul class="lab-menu">
+            <li><a href="lab1.html" id="lab1-tab">Lab 1</a></li>
+            <li><a href="lab2.html" id="lab2-tab">Lab 2</a></li>
+            <li><a href="lab3.html" id="lab3-tab">Lab 3</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <section class="content" id="lab3-content">
+            <h1>Share Study Materials</h1>
+            <div class="tab-container">
+                <div class="tab-menu">
+                    <button class="tab-link active" onclick="openTab(event, 'Mathematics')">
+                        <span class="icon">📘</span> Mathematics
+                    </button>
+                    <button class="tab-link" onclick="openTab(event, 'Physics')">
+                        <span class="icon">📗</span> Physics
+                    </button>
+                </div>
+            
+                <div id="Mathematics" class="tab-content active">
+                    <h2>Mathematics</h2>
+                    <div class="section">
+                        <h3>Lectures</h3>
+                        <ul class="material-list">
+                            <li>
+                                <div>
+                                    <a href="#" onclick="showPreview('doc', 'https://docs.google.com/gview?url=YOUR_DOC_URL&embedded=true')">
+                                        <span class="icon">📄</span> Lecture 1 - Introduction
+                                    </a>
+                                    <a href="#">Download</a>
+                                </div>
+                                <div class="toc">
+                                    <strong>Table of Contents:</strong>
+                                    <ul>
+                                        <li>Introduction to Calculus</li>
+                                        <li>Basic Algebra Concepts</li>
+                                        <li>Functions and Graphs</li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <a href="#" onclick="showPreview('pdf', 'https://docs.google.com/gview?url=YOUR_PDF_URL&embedded=true')">
+                                        <span class="icon">📄</span> Lecture 2 - Algebra
+                                    </a>
+                                    <a href="#">Download</a>
+                                </div>
+                                <div class="toc">
+                                    <strong>Table of Contents:</strong>
+                                    <ul>
+                                        <li>Linear Equations</li>
+                                        <li>Quadratic Equations</li>
+                                        <li>Polynomials</li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                        <button class="add-button">Add Lecture</button>
+                    </div>
+                </div>
+            
+                <div id="Physics" class="tab-content">
+                    <h2>Physics</h2>
+                    <div class="section">
+                        <h3>Lectures</h3>
+                        <ul class="material-list">
+                            <li>
+                                <div>
+                                    <a href="#" onclick="showPreview('ppt', 'https://docs.google.com/gview?url=YOUR_PPT_URL&embedded=true')">
+                                        <span class="icon">📄</span> Lecture 1 - Mechanics
+                                    </a>
+                                    <a href="#">Download</a>
+                                </div>
+                                <div class="toc">
+                                    <strong>Table of Contents:</strong>
+                                    <ul>
+                                        <li>Newton's Laws</li>
+                                        <li>Work and Energy</li>
+                                        <li>Momentum</li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                        <button class="add-button">Add Lecture</button>
+                    </div>
+                </div>
+            
+                <iframe id="preview" class="preview"></iframe>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
