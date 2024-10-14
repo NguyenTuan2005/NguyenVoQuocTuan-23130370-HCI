@@ -6,14 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        #group2 {
-            display: grid;
-            grid-template-columns: auto 1fr;
-            grid-template-rows: 2fr 1fr;
-            overflow: hidden;
-        }
-    </style>
     <title>Hci2025</title>
 </head>
 
@@ -43,88 +35,186 @@
         <section class="content" id="lab3-content">
             <h1>Share Study Materials</h1>
             <div class="tab-container">
-                <div class="tab-menu">
-                    <button class="tab-link active" onclick="openTab(event, 'Mathematics')">
-                        <span class="icon">📘</span> Mathematics
-                    </button>
-                    <button class="tab-link" onclick="openTab(event, 'Physics')">
-                        <span class="icon">📗</span> Physics
-                    </button>
+                <div class="tab-menu" role="tablist">
+                    <button class="tab-link active" role="tab" aria-selected="true"
+                        aria-controls="Mathematics">Mathematics</button>
+                    <button class="tab-link" role="tab" aria-selected="false" aria-controls="Physics">Physics</button>
                 </div>
-            
-                <div id="Mathematics" class="tab-content active">
+
+                <div id="Mathematics" class="tab-content active" role="tabpanel">
+                    <button class="add-lecture-button">Add Lecture</button>
                     <h2>Mathematics</h2>
-                    <div class="section">
-                        <h3>Lectures</h3>
-                        <ul class="material-list">
-                            <li>
-                                <div>
-                                    <a href="#" onclick="showPreview('doc', 'https://docs.google.com/gview?url=YOUR_DOC_URL&embedded=true')">
-                                        <span class="icon">📄</span> Lecture 1 - Introduction
-                                    </a>
-                                    <a href="#">Download</a>
-                                </div>
-                                <div class="toc">
-                                    <strong>Table of Contents:</strong>
-                                    <ul>
-                                        <li>Introduction to Calculus</li>
-                                        <li>Basic Algebra Concepts</li>
-                                        <li>Functions and Graphs</li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <a href="#" onclick="showPreview('pdf', 'https://docs.google.com/gview?url=YOUR_PDF_URL&embedded=true')">
-                                        <span class="icon">📄</span> Lecture 2 - Algebra
-                                    </a>
-                                    <a href="#">Download</a>
-                                </div>
-                                <div class="toc">
-                                    <strong>Table of Contents:</strong>
-                                    <ul>
-                                        <li>Linear Equations</li>
-                                        <li>Quadratic Equations</li>
-                                        <li>Polynomials</li>
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
-                        <button class="add-button">Add Lecture</button>
-                    </div>
+                    <ul class="material-list">
+                        <li>
+                            <a href="https://example.com/math_lecture1.doc">
+                                <i class="far fa-file-word"></i> Lecture 1 - Introduction to Calculus
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://example.com/math_lecture1.doc">
+                                <i class="far fa-file-pdf"></i> Lecture 2 - Linear Algebra
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-            
-                <div id="Physics" class="tab-content">
+
+                <div id="Physics" class="tab-content" role="tabpanel">
+                    <button class="add-lecture-button">Add Lecture</button>
                     <h2>Physics</h2>
-                    <div class="section">
-                        <h3>Lectures</h3>
-                        <ul class="material-list">
-                            <li>
-                                <div>
-                                    <a href="#" onclick="showPreview('ppt', 'https://docs.google.com/gview?url=YOUR_PPT_URL&embedded=true')">
-                                        <span class="icon">📄</span> Lecture 1 - Mechanics
-                                    </a>
-                                    <a href="#">Download</a>
-                                </div>
-                                <div class="toc">
-                                    <strong>Table of Contents:</strong>
-                                    <ul>
-                                        <li>Newton's Laws</li>
-                                        <li>Work and Energy</li>
-                                        <li>Momentum</li>
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
-                        <button class="add-button">Add Lecture</button>
-                    </div>
+                    <ul class="material-list">
+                        <li>
+                            <a href="https://example.com/math_lecture1.ppt">
+                                <i class="far fa-file-powerpoint"></i> Lecture 1 - Classical Mechanics
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-            
-                <iframe id="preview" class="preview"></iframe>
             </div>
         </section>
     </main>
 
+    <div id="previewModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closePreview()" style="margin: 20px">&times;</span>
+            <iframe id="previewFrame" style="width:100%;height:500px;"></iframe>
+        </div>
+    </div>
+
+    <!-- Add Lecture Modal -->
+    <div id="add-lecture-modal" class="modal">
+        <div class="modal-content">
+            <h2>Add Lecture</h2>
+            <input type="text" id="lecture-title" placeholder="Enter lecture title" required>
+            <div class="file-upload-area" id="file-upload-area">
+                <p>Drag and drop a file here or</p>
+                <input type="file" id="lecture-file" accept=".pdf,.doc,.ppt" required>
+            </div>
+            <button class="add-lecture-button" style="float: none; font-size: 16px;">Add Lecture</button>
+            <button class="cancel-button" onclick="StudyMaterialApp.closeAddLectureModal()">Cancel</button>
+        </div>
+    </div>
+
+
+    <script>
+        const StudyMaterialApp = {
+            init() {
+                this.tabContainer = document.querySelector('.tab-container');
+                this.modal = document.getElementById('previewModal');
+                this.previewFrame = document.getElementById('previewFrame');
+                this.addLectureModal = document.getElementById('add-lecture-modal');
+                this.lectureTitleInput = document.getElementById('lecture-title');
+                this.lectureFileInput = document.getElementById('lecture-file');
+                this.subject = ''; // To track which subject is currently active
+
+                this.addEventListeners();
+            },
+
+            addEventListeners() {
+                this.tabContainer.addEventListener('click', (event) => {
+                    if (event.target.classList.contains('tab-link')) {
+                        this.openTab(event);
+                    } else if (event.target.tagName === 'BUTTON' && event.target.textContent === 'Add Lecture') {
+                        this.subject = event.target.parentElement.id;
+                        this.showAddLectureModal(); // Show modal instead of prompt
+                    }
+                });
+
+                this.modal.querySelector('.close-button').addEventListener('click', this.closePreview.bind(this));
+
+                document.getElementById('submit-lecture').addEventListener('click', () => this.addLecture()); // Submit button for modal
+                document.querySelector('.close-button').addEventListener('click', this.closeAddLectureModal.bind(this));
+
+                document.querySelectorAll('.material-list a').forEach(link => {
+                    link.addEventListener('click', (event) => {
+                        event.preventDefault();
+                        const fileType = link.querySelector('i').className.includes('word') ? 'doc' :
+                            link.querySelector('i').className.includes('pdf') ? 'pdf' : 'ppt';
+                        this.showPreview(fileType, link.getAttribute('href'));
+                    });
+                });
+            },
+
+            showAddLectureModal() {
+                this.lectureTitleInput.value = ''; // Reset the input field
+                this.lectureFileInput.value = ''; // Reset file input
+                this.addLectureModal.style.display = 'block'; // Show the modal
+            },
+
+            closeAddLectureModal() {
+                this.addLectureModal.style.display = 'none'; // Hide the modal
+            },
+
+            addLecture() {
+                const title = this.lectureTitleInput.value;
+                const file = this.lectureFileInput.files[0];
+
+                if (title && file) {
+                    const fileExtension = file.name.split('.').pop();
+                    let fileIcon;
+
+                    // Determine file type and assign icon
+                    if (fileExtension === 'pdf') {
+                        fileIcon = '<i class="far fa-file-pdf"></i>';
+                    } else if (fileExtension === 'doc' || fileExtension === 'docx') {
+                        fileIcon = '<i class="far fa-file-word"></i>';
+                    } else if (fileExtension === 'ppt' || fileExtension === 'pptx') {
+                        fileIcon = '<i class="far fa-file-powerpoint"></i>';
+                    } else {
+                        alert('Unsupported file type!');
+                        return;
+                    }
+
+                    // Add the lecture to the correct subject list
+                    const list = document.querySelector(`#${this.subject} .material-list`);
+                    const li = document.createElement('li');
+                    li.innerHTML = `
+                <a href="#" onclick="StudyMaterialApp.showPreview('${fileExtension}', '#')">
+                    ${fileIcon} ${title}
+                </a>`;
+                    list.appendChild(li);
+
+                    // Close the modal after submission
+                    this.closeAddLectureModal();
+                } else {
+                    alert('Please provide a title and select a file.');
+                }
+            },
+
+            // Existing preview and tab handling functions
+            openTab(event) {
+                const tabName = event.target.textContent.trim();
+
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.style.display = 'none';
+                    content.classList.remove('active');
+                });
+
+                document.querySelectorAll('.tab-link').forEach(link => {
+                    link.classList.remove('active');
+                    link.setAttribute('aria-selected', 'false');
+                });
+
+                document.getElementById(tabName).style.display = 'block';
+                document.getElementById(tabName).classList.add('active');
+                event.target.classList.add('active');
+                event.target.setAttribute('aria-selected', 'true');
+            },
+
+            showPreview(type, url) {
+                this.previewFrame.src = url;
+                this.modal.style.display = 'block';
+            },
+
+            closePreview() {
+                this.previewFrame.src = '';
+                this.modal.style.display = 'none';
+            }
+        };
+
+        // Initialize the app when the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', () => StudyMaterialApp.init());
+
+    </script>
     <script src="script.js"></script>
 </body>
 
