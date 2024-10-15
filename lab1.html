@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         /* Hide header and mini-menu when viewed in iframe */
         body.content-only header,
@@ -25,8 +26,8 @@
     <header id="mainHeader">
         <nav>
             <ul class="menu">
-                <li><a href="index.html" id="home-tab" >Home</a></li>
-                <li><a href="about.html" id="about-tab" >About</a></li>
+                <li><a href="index.html" id="home-tab">Home</a></li>
+                <li><a href="about.html" id="about-tab">About</a></li>
                 <li><a href="labs.html" id="labs-tab">Labs</a></li>
             </ul>
         </nav>
@@ -59,26 +60,26 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="password">Password: </label>
-                            <input type="password" name="password" minlength="8" maxlength="255" required
-                                placeholder="Password">
-                            <button onclick="togglePassword()">Show/Hide</button>
+                            <label for="password">Password</label>
+                            <i class="password-toggle fas fa-eye" onclick="togglePassword()"></i>
+                            <input type="password" id="password" name="password" minlength="8" maxlength="255" required
+                                placeholder="Enter your password">
                             <span class="error-message" id="passwordError"></span> <!-- Inline error message -->
                         </div>
 
-                        <div>
+                        <div class="form-group">
                             <label for="email">Email Address</label>
                             <input type="email" name="email" maxlength="255" required placeholder="Enter your email"
                                 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
                             <span class="error-message" id="emailError"></span> <!-- Inline error message -->
                         </div>
 
-                        <div>
+                        <div class="form-group">
                             <label for="fullName">Full Name (Optional):</label>
                             <input type="text" name="fullName" placeholder="Enter your full name">
                         </div>
 
-                        <div>
+                        <div class="form-group">
                             <label for="role">Role: </label>
                             <select name="role" required title="Select a role">
                                 <option value="User">User</option>
@@ -89,8 +90,11 @@
 
                         <div>
                             <label for="profilePicture">Profile Picture:</label>
-                            <input type="file" name="profilePicture" accept="image/*" id="profilePictureInput">
-                            <input type="url" name="profilePictureUrl" placeholder="Or enter image URL">
+                            <div class="file-upload-area" id="file-upload-area">
+                                <p>Drag and drop a file here or</p>
+                                <input type="file" name="profilePicture" accept="image/*" id="profilePictureInput">
+                                <input type="url" name="profilePictureUrl" placeholder="Or enter image URL">
+                            </div>
                             <div>
                                 <img id="profilePreview" src="#" alt="Profile Preview"
                                     style="display: none; width: 100px; height: 100px;">

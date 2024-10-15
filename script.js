@@ -96,12 +96,7 @@ const AccountFormHandler = {
     },
 
     checkFormValidity() {
-        if (this.form) {
-            this.submitButton.disabled = !this.form.checkValidity();
-        } else {
-            console.warn('Form element not found');
-            this.submitButton.disabled = true; // Disable button if form not found
-        }
+        this.submitButton.disabled = !this.form.checkValidity();
     },
 
     handleSubmit(e) {
@@ -218,6 +213,11 @@ const LoginFormHandler = {
     togglePassword() {
         const passwordInput = document.getElementById('password');
         const toggleIcon = document.querySelector('.password-toggle');
+
+        if (!passwordInput || !toggleIcon) {
+            console.error('Password input or toggle icon not found!');
+            return;
+        }
         
         const isPassword = passwordInput.type === 'password';
         passwordInput.type = isPassword ? 'text' : 'password';
@@ -261,6 +261,7 @@ const LoginFormHandler = {
     }
 };
 
+// Study Marterial (Lab3)
 const StudyMaterialApp = {
     init() {
         this.tabContainer = document.querySelector('.tab-container');
