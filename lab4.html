@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .section {
+            display: none;
+            padding: 20px;
+        }
+
+        .section.active {
+            display: block;
+        }
+    </style>
+    <title>Hci2025</title>
+</head>
+
+<body>
+    <!-- Header and menu (unchanged) -->
+    <header id="mainHeader">
+        <nav>
+            <ul class="menu">
+                <li><a href="index.html" id="home-tab" >Home</a></li>
+                <li><a href="about.html" id="about-tab" >About</a></li>
+                <li><a href="labs.html" id="labs-tab" >Labs</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Mini Menu for Labs (hidden by default) -->
+    <div id="lab-menu" class="mini-menu">
+        <ul class="lab-menu">
+            <li><a href="lab1.html" id="lab1-tab">Lab 1</a></li>
+            <li><a href="lab2.html" id="lab2-tab">Lab 2</a></li>
+            <li><a href="lab3.html" id="lab3-tab">Lab 3</a></li>
+            <li><a href="lab4.html" id="lab4-tab">Lab 4</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <div class="navbar">
+            <div class="logo">My Courses</div>
+            <div class="menu">
+                <a onclick="showSection('main')">Web Development</a>
+                <a onclick="showSection('mobile')">Mobile Development</a>
+                <a onclick="showSection('game')">Game Development</a>
+            </div>
+        </div>
+    
+        <section class="section active" id="main">
+            <section class="about-me" id="about">
+                <img src="https://via.placeholder.com/100" alt="Profile Picture">
+                <div>
+                    <h2>Welcome back, Nguyen Vo Quoc Tuan</h2>
+                    <p>This section contains information about me.</p>
+                </div>
+            </section>
+            
+            <div class="weekly-streak">
+                <div class="course-info">
+                    <i class="fas fa-fire"></i>
+                    <div>
+                        <h2>2 weeks</h2>
+                        <p>Current streak</p>
+                    </div>
+                </div>
+                <div class="round-design">
+                    <div><span>11/30</span></div>
+                    <div><span>4/1</span></div>
+                </div>
+            </div>
+    
+            <div class="last-course">
+                <div class="course-card">
+                    <img src="https://via.placeholder.com/150" alt="Course Image">
+                    <h3>Introduction to Programming</h3>
+                    <p>Lecture • 1m</p>
+                </div>
+                <div class="course-card">
+                    <img src="https://via.placeholder.com/150" alt="Course Image">
+                    <h3>Integration Introduction</h3>
+                    <p>Lecture • 6m left</p>
+                </div>
+                <div class="course-card">
+                    <img src="https://via.placeholder.com/150" alt="Course Image">
+                    <h3>Quiz and Questions</h3>
+                    <p>Quiz • 9 questions</p>
+                </div>
+            </div>
+        </section>
+    
+        <section class="section" id="mobile">
+            <h2>Mobile Development Courses</h2>
+            <p>Details about Mobile Development courses...</p>
+        </section>
+    
+        <section class="section" id="game">
+            <h2>Game Development Courses</h2>
+            <p>Details about Game Development courses...</p>
+        </section>
+    
+        <script>
+            function showSection(sectionId) {
+                document.querySelectorAll('.section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                document.getElementById(sectionId).classList.add('active');
+            }
+        </script>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

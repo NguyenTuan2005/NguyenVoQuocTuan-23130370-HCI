@@ -6,6 +6,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Hci2025</title>
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+        }
+        .header h1 {
+            margin: 10px 0 5px;
+            font-size: 24px;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 18px;
+            color: #777;
+        }
+        .contact-info {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section h3 {
+            border-bottom: 2px solid #000;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        .flex-container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .profile, .experience, .education, .references {
+            width: 48%;
+        }
+        .skills {
+            justify-content: space-between;
+        }
+        .skills ul {
+            width: 48%;
+            margin: 0 20px;
+        }
+        .skills ul li {
+            margin-bottom: 5px;
+        }
+        .skills .bar {
+            background-color: #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            height: 10px;
+        }
+        .skills .bar div {
+            height: 100%;
+            background-color: #333;
+        }
+    </style>
 </head>
 
 <body>
@@ -23,8 +92,59 @@
     <!-- Main Content -->
     <main>
         <section class="content" id="about-content">
-            <h1>About Us</h1>
-            <p>Learn more about our mission and vision.</p>
+            <div class="container">
+                <div class="header">
+                    <img src="profile.jpg" alt="Profile Picture">
+                    <h1>Nguyen Vo Quoc Tuan</h1>
+                    <h2>Marketing Manager</h2>
+                </div>
+                <div class="contact-info">
+                    <p>+84 356916931 | work.thanielnguyen@gmail.com | Đồng Nai, Việt Nam</p>
+                    <p>facebook.com/yourname | twitter.com/yourname | linkedin.com/yourname</p>
+                </div>
+                <div class="flex-container">
+                    <div class="profile section">
+                        <h3>Profile</h3>
+                        <p>This section is used to describe your professional career. Let the potential employer know why they would want to hire you...</p>
+                    </div>
+                    <div class="experience section">
+                        <h3>Experience</h3>
+                        <p><strong>2015 - Present</strong><br>Your Job Title / Company Name<br>New York<br>Type brief description...</p>
+                        <p><strong>2013 - 2014</strong><br>Your Job Title / Company Name<br>UK<br>Type brief description...</p>
+                        <p><strong>2012 - 2013</strong><br>Your Job Title / Company Name<br>Texas<br>Type brief description...</p>
+                    </div>
+                </div>
+                <div class="flex-container">
+                    <div class="education section">
+                        <h3>Education</h3>
+                        <p><strong>2023 - Present</strong><br>Bachelor / Imformation Technology<br>Nong Lam University, Thu Duc</p>
+                    </div>
+                    <div class="references section">
+                        <h3>References</h3>
+                        <p><strong>John Doe</strong><br>Position Title / Company Name<br>P: 123 456 789<br>E: john.doe@email.com</p>
+                        <p><strong>William Sasha</strong><br>Position Title / Company Name<br>P: 123 456 789<br>E: sasha.william@email.com</p>
+                        <p><strong>Lila Jackson</strong><br>Position Title / Company Name<br>P: 123 456 789<br>E: lila.jackson@email.com</p>
+                    </div>
+                </div>
+                <div class="skills section">
+                    <h3>Skills</h3>
+                    <div style="display: flex;">
+                        <ul>
+                            <li>Social Media<div class="bar"><div style="width: 80%;"></div></div></li>
+                            <li>Project Management<div class="bar"><div style="width: 70%;"></div></div></li>
+                            <li>Venue Marketing<div class="bar"><div style="width: 90%;"></div></div></li>
+                            <li>Microsoft Word<div class="bar"><div style="width: 60%;"></div></div></li>
+                            <li>Adobe Photoshop<div class="bar"><div style="width: 85%;"></div></div></li>
+                        </ul>
+                        <ul>
+                            <li>Organization<div class="bar"><div style="width: 75%;"></div></div></li>
+                            <li>Communication<div class="bar"><div style="width: 80%;"></div></div></li>
+                            <li>Creativity<div class="bar"><div style="width: 70%;"></div></div></li>
+                            <li>Hard Working<div class="bar"><div style="width: 90%;"></div></div></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>        
         </section>
     </main>
 
