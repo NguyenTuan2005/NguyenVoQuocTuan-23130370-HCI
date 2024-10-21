@@ -2,7 +2,7 @@
 const DateUtils = {
     getCurrentTimestamp(format = 'localeString') {
         const now = new Date();
-        switch(format) {
+        switch (format) {
             case 'localeString':
                 return now.toLocaleString();
             case 'ISO':
@@ -96,7 +96,11 @@ const AccountFormHandler = {
     },
 
     checkFormValidity() {
-        this.submitButton.disabled = !this.form.checkValidity();
+        if (this.form) {
+            this.submitButton.disabled = !this.form.checkValidity();
+        } else {
+            console.warn('Form element is null, falling back to alternative logic.');
+        }
     },
 
     handleSubmit(e) {
@@ -157,7 +161,7 @@ const ContentToggler = {
     toggle(groupId) {
         const group = document.getElementById(groupId);
         const isShowing = group.classList.contains("show");
-        
+
         if (isShowing) {
             this.hideGroup(group);
         } else {
@@ -184,7 +188,7 @@ const ContentToggler = {
         group.style.display = "block";
         group.style.maxHeight = "0px";
         group.style.opacity = "0";
-        
+
         setTimeout(() => {
             group.style.maxHeight = group.scrollHeight + "px";
             group.style.opacity = "1";
@@ -218,7 +222,7 @@ const LoginFormHandler = {
             console.error('Password input or toggle icon not found!');
             return;
         }
-        
+
         const isPassword = passwordInput.type === 'password';
         passwordInput.type = isPassword ? 'text' : 'password';
         toggleIcon.classList.toggle('fa-eye', !isPassword);
@@ -240,7 +244,7 @@ const LoginFormHandler = {
         e.preventDefault();
         const button = e.target.querySelector('.login-button');
         button.classList.add('loading');
-        
+
         setTimeout(() => {
             button.classList.remove('loading');
             // Add actual login logic here
@@ -250,18 +254,18 @@ const LoginFormHandler = {
     handleRippleEffect(e) {
         const x = e.clientX - e.target.offsetLeft;
         const y = e.clientY - e.target.offsetTop;
-        
+
         const ripple = document.createElement('span');
         ripple.style.left = `${x}px`;
         ripple.style.top = `${y}px`;
-        
+
         this.appendChild(ripple);
-        
+
         setTimeout(() => ripple.remove(), 600);
     }
 };
 
-// Study Marterial (Lab3)
+// Study Material Handling (Lab3)
 const StudyMaterialApp = {
     init() {
         this.tabContainer = document.querySelector('.tab-container');
@@ -289,16 +293,27 @@ const StudyMaterialApp = {
 
         this.modal?.querySelector('.close-button').addEventListener('click', this.closePreview.bind(this));
 
-        document.getElementById('submit-lecture').addEventListener('click', () => this.addLecture()); // Submit button for modal
-        document.querySelector('.close-button').addEventListener('click', this.closeAddLectureModal.bind(this));
+        const submitLectureBtn = document.getElementById('submit-lecture');
+        if (submitLectureBtn) {
+            submitLectureBtn.addEventListener('click', () => this.addLecture()); // Submit button for modal
+        }
 
+        // Close modal button event listener
+        const closeBtn = document.querySelector('.close-button');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', this.closeAddLectureModal.bind(this));
+        }
+
+        // Material list items event listeners
         document.querySelectorAll('.material-list a').forEach(link => {
-            link.addEventListener('click', (event) => {
-                event.preventDefault();
-                const fileType = link.querySelector('i').className.includes('word') ? 'doc' :
-                    link.querySelector('i').className.includes('pdf') ? 'pdf' : 'ppt';
-                this.showPreview(fileType, link.getAttribute('href'));
-            });
+            if (link) {
+                link.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const fileType = link.querySelector('i').className.includes('word') ? 'doc' :
+                        link.querySelector('i').className.includes('pdf') ? 'pdf' : 'ppt';
+                    this.showPreview(fileType, link.getAttribute('href'));
+                });
+            }
         });
     },
 
@@ -379,6 +394,60 @@ const StudyMaterialApp = {
     }
 };
 
+// Course Card Components
+const CourseCardComponents = {
+    createEnhancedCourseCard({ title, type, duration, progress, imageUrl }) {
+        const card = document.createElement('div');
+        card.className = 'course-card';
+        card.innerHTML = `
+            <div class="course-card-image">
+                <img src="${imageUrl}" alt="${title}" />
+            </div>
+            <div class="course-card-content">
+                <h3>${title}</h3>
+                <p class="course-info">
+                    <span>${type}</span> • <span>${duration}</span>
+                </p>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" style="width: ${progress}%"></div>
+                </div>
+            </div>
+        `;
+        
+        // Make the entire card clickable
+        card.addEventListener('click', () => {
+            console.log(`Continuing to learn: ${title}`);
+            // Add your logic here to continue the course
+        });
+        
+        return card;
+    },
+
+    createEnhancedCourseCardList() {
+        const courses = [
+            { title: "Introduction to Programming", type: "Lecture", duration: "1m", progress: 100, imageUrl: "https://via.placeholder.com/150" },
+            { title: "Integration Introduction", type: "Lecture", duration: "6m left", progress: 50, imageUrl: "https://via.placeholder.com/150" },
+            { title: "Quiz and Questions", type: "Quiz", duration: "9 questions", progress: 0, imageUrl: "https://via.placeholder.com/150" },
+        ];
+
+        const list = document.createElement('div');
+        list.className = 'enhanced-course-list';
+
+        courses.forEach(course => {
+            list.appendChild(this.createEnhancedCourseCard(course));
+        });
+
+        return list;
+    },
+
+    init() {
+        const container = document.getElementById('course-cards-container');
+        if (container) {
+            container.appendChild(this.createEnhancedCourseCardList());
+        }
+    }
+};
+
 // Initialize all handlers when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     NavigationHandler.init();
@@ -386,13 +455,21 @@ document.addEventListener('DOMContentLoaded', () => {
     CourseFormHandler.init();
     LoginFormHandler.init();
     StudyMaterialApp.init();
+    CourseCardComponents.init();
 });
 
-// Global functions needed for inline HTML onclick handlers
-function toggleGroup(groupId) {
+// Global functions (moved from inline HTML)
+window.toggleGroup = function (groupId) {
     ContentToggler.toggle(groupId);
-}
+};
 
-function togglePassword() {
+window.togglePassword = function () {
     LoginFormHandler.togglePassword();
-}
+};
+
+function showSection(sectionId) {
+    document.querySelectorAll('.section').forEach(section => {
+        section.classList.remove('active');
+    });
+    document.getElementById(sectionId).classList.add('active');
+};

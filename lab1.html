@@ -26,28 +26,28 @@
     <header id="mainHeader">
         <nav>
             <ul class="menu">
-                <li><a href="index.html" id="home-tab">Home</a></li>
-                <li><a href="about.html" id="about-tab">About</a></li>
-                <li><a href="labs.html" id="labs-tab">Labs</a></li>
+                <li><a href="index.html" id="home-tab" >Home</a></li>
+                <li><a href="about.html" id="about-tab" >About</a></li>
+                <li><a href="labs.html" id="labs-tab" >Labs</a></li>
+            </ul>
+        </nav>
+
+        <!-- Mini Menu for Labs (hidden by default) -->
+        <nav id="lab-menu" class="mini-menu">
+            <ul class="lab-menu">
+                <li><a href="lab1.html" id="lab1-tab">Lab 1</a></li>
+                <li><a href="lab2.html" id="lab2-tab">Lab 2</a></li>
+                <li><a href="lab3.html" id="lab3-tab">Lab 3</a></li>
+                <li><a href="lab4.html" id="lab4-tab">Lab 4</a></li>
             </ul>
         </nav>
     </header>
-
-    <!-- Mini Menu for Labs (hidden by default) -->
-    <div id="lab-menu" class="mini-menu">
-        <ul class="lab-menu">
-            <li><a href="lab1.html" id="lab1-tab">Lab 1</a></li>
-            <li><a href="lab2.html" id="lab2-tab">Lab 2</a></li>
-            <li><a href="lab3.html" id="lab3-tab">Lab 3</a></li>
-            <li><a href="lab4.html" id="lab4-tab">Lab 4</a></li>
-        </ul>
-    </div>
 
     <!-- Main Content -->
     <main>
         <section class="content" id="lab1-content">
             <section class="lab-groups">
-                <div class="group-card" onclick="toggleGroup('group1')">
+                <div class="group-card" onclick="window.toggleGroup('group1')">
                     <h2>Group 1: Creating Account</h2>
                     <p>Click to view more</p>
                 </div>
@@ -122,7 +122,7 @@
 
                 </div>
 
-                <div class="group-card" onclick="toggleGroup('group2')">
+                <div class="group-card" onclick="window.toggleGroup('group2')">
                     <h2>Group 2: Course Management</h2>
                     <p>Click to view more</p>
                 </div>
@@ -190,7 +190,7 @@
             document.body.classList.add('content-only');
         }
     </script>
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 
 </html>
