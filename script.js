@@ -394,9 +394,54 @@ const StudyMaterialApp = {
     }
 };
 
-// Course Card Components
-const CourseCardComponents = {
-    createEnhancedCourseCard({ title, type, duration, progress, imageUrl }) {
+// Dash Board Handler (Lab4)
+const DashboardHandler = {
+    init() {
+        this.navigationTabs = document.querySelector('.navigation-tabs');
+        this.continueLearningContainer = document.getElementById('continue-learning-container');
+        this.recommendedCoursesContainer = document.getElementById('recommended-courses-container');
+        
+        this.setupNavigationTabs();
+        this.setupContinueLearning();
+        this.setupRecommendedCourses();
+    },
+
+    setupNavigationTabs() {
+        const tabs = ['Courses', 'Learning paths', 'Certification preparation'];
+        if (this.navigationTabs) {
+            tabs.forEach(tab => {
+                const button = document.createElement('button');
+                button.textContent = tab;
+                button.className = `tab-button ${tab === 'Courses' ? 'active' : ''}`;
+                button.addEventListener('click', () => this.handleTabClick(button));
+                this.navigationTabs.appendChild(button);
+            });
+        }
+    },
+
+    handleTabClick(clickedTab) {
+        document.querySelectorAll('.tab-button').forEach(tab => {
+            tab.classList.remove('active');
+        });
+        clickedTab.classList.add('active');
+    },
+
+    setupContinueLearning() {
+        if (this.continueLearningContainer) {
+            const currentCourses = [
+                { title: "Introduction to Programming", type: "Lecture", duration: "1m", progress: 100, imageUrl: "img/Introduction-to-Programming.jpg" },
+                { title: "Integration Introduction", type: "Lecture", duration: "6m left", progress: 50, imageUrl: "img/Integration-Introduction.jpg" },
+                { title: "Quiz and Questions", type: "Quiz", duration: "9 questions", progress: 0, imageUrl: "img/Quiz-and-Questions.jpg" }
+            ];
+
+            currentCourses.forEach(course => {
+                const courseCard = this.createCourseCard(course);
+                this.continueLearningContainer.appendChild(courseCard);
+            });
+        }
+    },
+
+    createCourseCard({ title, type, duration, progress, imageUrl }) {
         const card = document.createElement('div');
         card.className = 'course-card';
         card.innerHTML = `
@@ -413,39 +458,48 @@ const CourseCardComponents = {
                 </div>
             </div>
         `;
-        
-        // Make the entire card clickable
         card.addEventListener('click', () => {
-            console.log(`Continuing to learn: ${title}`);
-            // Add your logic here to continue the course
+            console.log(`Continuing course: ${title}`);
         });
-        
         return card;
     },
 
-    createEnhancedCourseCardList() {
-        const courses = [
-            { title: "Introduction to Programming", type: "Lecture", duration: "1m", progress: 100, imageUrl: "https://via.placeholder.com/150" },
-            { title: "Integration Introduction", type: "Lecture", duration: "6m left", progress: 50, imageUrl: "https://via.placeholder.com/150" },
-            { title: "Quiz and Questions", type: "Quiz", duration: "9 questions", progress: 0, imageUrl: "https://via.placeholder.com/150" },
-        ];
+    setupRecommendedCourses() {
+        if (this.recommendedCoursesContainer) {
+            const recommendedCourses = [
+                { title: "Java Programmer (OCAJP) 1Z0-808", instructor: "Andrii Piatakha", rating: 4.6, reviews: 438, imageUrl: "img/Java-Programmer_(OCAJP)_1Z0-808.jpg" },
+                { title: "Pass the 1Z0-808 Exam", instructor: "Tim Buchalka", rating: 4.6, reviews: 5906, imageUrl: "img/Pass-the_1Z0-808_Exam.jpg" }
+            ];
 
-        const list = document.createElement('div');
-        list.className = 'enhanced-course-list';
+            const grid = document.createElement('div');
+            grid.className = 'recommended-courses-grid';
 
-        courses.forEach(course => {
-            list.appendChild(this.createEnhancedCourseCard(course));
-        });
+            recommendedCourses.forEach(course => {
+                grid.appendChild(this.createRecommendedCourseCard(course));
+            });
 
-        return list;
+            this.recommendedCoursesContainer.appendChild(grid);
+        }
     },
 
-    init() {
-        const container = document.getElementById('course-cards-container');
-        if (container) {
-            container.appendChild(this.createEnhancedCourseCardList());
-        }
-    }
+    createRecommendedCourseCard({ title, instructor, rating, reviews, imageUrl }) {
+        const card = document.createElement('div');
+        card.className = 'recommended-course-card';
+        card.innerHTML = `
+            <div class="course-image">
+                <img src="${imageUrl}" alt="${title}" />
+            </div>
+            <div class="course-content">
+                <h3>${title}</h3>
+                <p class="instructor">${instructor}</p>
+                <div class="rating">
+                    ${'★'.repeat(Math.floor(rating))}${'☆'.repeat(5 - Math.floor(rating))}
+                    <span class="reviews">(${reviews})</span>
+                </div>
+            </div>
+        `;
+        return card;
+    },
 };
 
 // Initialize all handlers when DOM is loaded
@@ -455,7 +509,7 @@ document.addEventListener('DOMContentLoaded', () => {
     CourseFormHandler.init();
     LoginFormHandler.init();
     StudyMaterialApp.init();
-    CourseCardComponents.init();
+    DashboardHandler.init();
 });
 
 // Global functions (moved from inline HTML)

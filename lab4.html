@@ -15,6 +15,10 @@
         .section.active {
             display: block;
         }
+
+        main {
+            padding-left: 0;
+        }
     </style>
     <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
@@ -45,7 +49,6 @@
         </nav>
     </header>
 
-    <!-- Main Content -->
     <main>
         <div class="navbar">
             <div class="logo">My Courses</div>
@@ -57,7 +60,7 @@
 
         <section class="section active" id="main">
             <section class="about-me" id="about">
-                <img src="https://via.placeholder.com/100" alt="Profile Picture">
+                <img src="img/avatar-img.jpg" alt="Profile Picture">
                 <div>
                     <h2>Welcome back, Nguyen Vo Quoc Tuan</h2>
                     <p>This section contains information about me.</p>
@@ -78,8 +81,25 @@
                 </div>
             </div>
 
-            <!-- New React container for course cards -->
-            <div id="course-cards-container"></div>
+            <div class="dashboard-container">
+                <!-- Navigation and Continue Learning Section -->
+                <div class="continue-learning-section">
+                    <h1>Pick up where you left off</h1>
+                    <div class="navigation-tabs"></div>
+                    <div id="continue-learning-container"></div>
+                </div>
+
+                <!-- Recommended Courses Section -->
+                <div class="recommended-courses-section">
+                    <h2>Based on your certification interests, we recommend</h2>
+                    <div id="recommended-courses-container"></div>
+                </div>
+
+                <!-- Personalization button -->
+                <button class="personalize-button">
+                    Personalize your learning
+                </button>
+            </div>
         </section>
 
         <section class="section" id="mobile">

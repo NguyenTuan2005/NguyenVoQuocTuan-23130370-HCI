@@ -1159,6 +1159,8 @@ button#deleteButton {
 }
 
 .about-me img {
+    width: 100px;
+    height: 100px;
     border: 2px solid var(--primary-color);
     border-radius: 50%;
     margin-right: 20px;
@@ -1177,6 +1179,7 @@ button#deleteButton {
 .weekly-streak {
     background-color: #ffffff;
     border: 1px solid var(--shadow-color);
+    border-radius: 8px;
     margin: 20px 0;
     display: flex;
     justify-content: space-between;
@@ -1226,10 +1229,20 @@ button#deleteButton {
     justify-content: flex-start;
 }
 
-.course-card {
+#continue-learning-container {
     display: flex;
-    width: calc(33.333% - 20px);
-    background-color: #ffffff;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.course-card {
+    flex: 1 1 auto;
+    display: flex;
+    min-width: 250px;
+    max-width: 400px;
+    background-color: var(--background-color);
+    border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -1250,7 +1263,7 @@ button#deleteButton {
 
 .course-card-image img {
     width: 100%;
-    height: 100%;
+    height: auto;
     object-fit: cover;
 }
 
@@ -1258,6 +1271,7 @@ button#deleteButton {
     flex: 1;
     padding: 15px;
     display: flex;
+    flex-grow: 1;
     flex-direction: column;
     justify-content: space-between;
 }
@@ -1283,10 +1297,99 @@ button#deleteButton {
 
 .progress-bar {
     height: 100%;
-    background-color: #1a73e8;
+    background-color: var(--primary-color);
     transition: width 0.3s ease;
 }
 
+.dashboard-container {
+    background-color: var(--background-color);
+}
+
+.navigation-tabs {
+    display: flex;
+    gap: 1rem;
+    border-bottom: 1px solid var(--shadow-color);
+    margin-bottom: 2rem;
+}
+
+.tab-button {
+    padding: 0.5rem 1rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: color var(--transition-time);
+    color: #666;
+}
+
+.tab-button.active {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.course-content {
+    padding: 1rem;
+}
+
+.rating {
+    color: var(--secondary-color);
+}
+
+.dashboard-container {
+    padding: 2rem;
+}
+
+.continue-learning-section {
+    margin-bottom: 3rem;
+}
+
+.enhanced-course-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.recommended-courses-section {
+    margin-top: 3rem;
+}
+
+.recommended-courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.recommended-course-card {
+    background: var(--background-color);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    transition: transform var(--transition-time);
+}
+
+.recommended-course-card .course-image {
+    width: 100%; 
+    height: 100px; 
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    overflow: hidden;
+}
+
+.recommended-course-card .course-image img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.recommended-course-card:hover {
+    transform: translateY(-2px);
+}
+
+.personalize-button {
+    margin-top: 10px;
+}
 /* ==========================================================================
    Responsive Design
    ========================================================================== */
