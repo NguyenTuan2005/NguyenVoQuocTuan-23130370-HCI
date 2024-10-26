@@ -6,6 +6,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
 }
 
 :root {
@@ -196,6 +197,7 @@ nav {
 
 .lab-menu a.active {
     color: var(--secondary-color);
+    border-bottom: 2px solid var(--secondary-color);
 }
 
 /* Group Card Styling */

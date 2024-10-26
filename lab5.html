@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .section {
+            display: none;
+            padding: 20px;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        main {
+            padding-left: 0;
+        }
+    </style>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Hci2025</title>
+</head>
+
+<body>
+    <!-- Header and menu (unchanged) -->
+    <header id="mainHeader">
+        <nav>
+            <ul class="menu">
+                <li><a href="index.html" id="home-tab">Home</a></li>
+                <li><a href="about.html" id="about-tab">About</a></li>
+                <li><a href="labs.html" id="labs-tab">Labs</a></li>
+            </ul>
+        </nav>
+
+        <!-- Mini Menu for Labs (hidden by default) -->
+        <nav id="lab-menu" class="mini-menu">
+            <ul class="lab-menu">
+                <li><a href="lab1.html" id="lab1-tab">Lab 1</a></li>
+                <li><a href="lab2.html" id="lab2-tab">Lab 2</a></li>
+                <li><a href="lab3.html" id="lab3-tab">Lab 3</a></li>
+                <li><a href="lab4.html" id="lab4-tab">Lab 4</a></li>
+                <li><a href="lab5.html" id="lab5-tab">Lab 5</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Root element for React -->
+        <div id="root" role="main"></div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.development.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.development.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.22.20/babel.min.js"></script>
+
+        <script type="text/babel">
+            const MyLearningDashboard = () => {
+                const [activeTab, setActiveTab] = React.useState('All courses');
+                const [searchQuery, setSearchQuery] = React.useState('');
+                const [selectedSort, setSelectedSort] = React.useState('Recently Accessed');
+                const [selectedCategory, setSelectedCategory] = React.useState('All');
+                const [selectedProgress, setSelectedProgress] = React.useState('All');
+                const [selectedInstructor, setSelectedInstructor] = React.useState('All');
+
+                // Regular courses data
+                const courses = [
+                    {
+                        id: 1,
+                        title: "FPT_ISMS Refresh Training S2 2024 (Vietnamese)",
+                        provider: "FSOFT Content Development",
+                        progress: 100,
+                        rating: 0,
+                        imageUrl: "img/Integration-Introduction.jpg"
+                    },
+                    {
+                        id: 2,
+                        title: "The Complete Spring Boot Development Bootcamp",
+                        provider: "Learn The Part Inc., Rayan Slim",
+                        progress: 100,
+                        rating: 0,
+                        imageUrl: "img/Integration-Introduction.jpg"
+                    },
+                    {
+                        id: 3,
+                        title: "MuleSoft 4.X Complete Guide For Beginners",
+                        provider: "Chinna Reddy",
+                        progress: 1,
+                        rating: 0,
+                        imageUrl: "img/Integration-Introduction.jpg"
+                    },
+                    {
+                        id: 4,
+                        title: "English Vocabulary: 504 Essential Words",
+                        provider: "Mister Rabiey",
+                        progress: 15,
+                        rating: 5,
+                        imageUrl: "img/Integration-Introduction.jpg"
+                    }
+                ];
+
+                // New learning paths data
+                const learningPaths = [
+                    {
+                        id: 1,
+                        title: "Induction Training_GAAFOFY (VI)",
+                        provider: "FPT",
+                        completedItems: 1,
+                        totalItems: 6,
+                        progress: (1 / 6) * 100,
+                        imageUrl: "img/Integration-Introduction.jpg"
+                    },
+                    {
+                        id: 2,
+                        title: "Induction Training for BO_IT_Mandatory (VI)",
+                        provider: "FPT",
+                        completedItems: 9,
+                        totalItems: 9,
+                        progress: 100,
+                        imageUrl: "img/Integration-Introduction.jpg"
+                    }
+                ];
+
+                const FilterButton = ({ label, value, setValue, options }) => (
+                    <div className="relative">
+                        <button className="flex items-center gap-2 px-4 py-2 border rounded hover:bg-gray-50">
+                            {label} <span className="w-4 h-4">▼</span>
+                        </button>
+                    </div>
+                );
+
+                const CourseCard = ({ course }) => (
+                    <div className="bg-white rounded-lg shadow hover:shadow-md transition-shadow">
+                        <div className="relative">
+                            <img
+                                src={course.imageUrl}
+                                alt={course.title}
+                                className="w-full h-40 object-cover rounded-t-lg"
+                            />
+                            <button className="absolute top-2 right-2 p-1 hover:bg-gray-100 rounded-full">
+                                <span className="w-5 h-5">⋮</span>
+                            </button>
+                        </div>
+                        <div className="p-4">
+                            <h3 className="font-semibold text-lg mb-1">{course.title}</h3>
+                            <p className="text-gray-600 text-sm mb-3">{course.provider}</p>
+                            <div className="flex items-center gap-2 mb-2">
+                                <div className="flex-1 h-2 bg-gray-200 rounded-full">
+                                    <div
+                                        className="h-full rounded-full"
+                                        style={{ width: `${course.progress}%`, backgroundColor: 'var(--primary-color)' }}
+                                    />
+                                </div>
+                                <span className="text-sm text-gray-600">{course.progress}% complete</span>
+                            </div>
+                            <div className="flex items-center gap-1">
+                                {[...Array(5)].map((_, i) => (
+                                    <span key={i} className={`text-lg ${i < course.rating ? 'text-yellow-400' : 'text-gray-300'}`}>
+                                        ★
+                                    </span>
+                                ))}
+                                {course.rating === 0 && <span className="text-sm text-gray-600">Leave a rating</span>}
+                                {course.rating > 0 && <span className="text-sm text-gray-600">Your rating</span>}
+                            </div>
+                        </div>
+                    </div>
+                );
+
+                const LearningPathCard = ({ path }) => (
+                    <div className="bg-white rounded-lg shadow hover:shadow-md transition-shadow p-4 ">
+                        <div className="flex items-start gap-4 ">
+                            <div className="course-card-image">
+                                <img
+                                    src={path.imageUrl}
+                                    alt={path.provider}
+                                    className="w-12 h-12 object-contain "
+                                />
+                            </div>
+                            <div className="flex-1">
+                                <div className="flex justify-between items-start">
+                                    <div>
+                                        <p className="text-sm text-gray-600 mb-1">Learning path</p>
+                                        <h3 className="font-semibold text-lg mb-3">{path.title}</h3>
+                                    </div>
+                                    <button className="p-1 hover:bg-gray-100 rounded-full">
+                                        <span className="w-5 h-5">⋮</span>
+                                    </button>
+                                </div>
+                                <p className="text-sm text-gray-600 mb-2">
+                                    {path.completedItems} of {path.totalItems} items complete
+                                </p>
+                                <div className="h-2 bg-gray-200 rounded-full">
+                                    <div
+                                        className="h-full rounded-full"
+                                        style={{ width: `${path.progress}%`, backgroundColor: 'var(--primary-color)' }}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                );
+
+                return (
+                    <div className="min-h-screen bg-gray-50 p-6">
+                        <div className="max-w-7xl mx-auto">
+                            <div className="mb-8">
+                                <h1 className="text-3xl font-bold mb-4">My learning</h1>
+                                <div className="flex items-center text-gray-600">
+                                    <span className="font-semibold">87hr 36min</span> watched •
+                                    <button className="ml-2 text-blue-600 hover:underline">
+                                        View all activity
+                                    </button>
+                                </div>
+                            </div>
+
+                            <nav className="mb-8">
+                                <ul className="flex gap-6 border-b">
+                                    {['All courses', 'Learning paths', 'Certifications', 'Archived', 'Learning tools'].map((item) => (
+                                        <li key={item}>
+                                            <button
+                                                className={`pb-2 px-1 ${activeTab === item ? 'border-b-2 border-blue-600 text-blue-600' : 'text-gray-600'}`}
+                                                onClick={() => setActiveTab(item)}
+                                            >
+                                                {item}
+                                            </button>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </nav>
+
+                            {/* Filters section - show only for All courses tab */}
+                            {activeTab === 'All courses' && (
+                                <div className="flex flex-wrap items-center gap-4 mb-8">
+                                    <div className="flex-1 min-w-[200px]">
+                                        <h2 className="font-medium mb-2">Sort by</h2>
+                                        <FilterButton
+                                            label="Recently Accessed"
+                                            value={selectedSort}
+                                            setValue={setSelectedSort}
+                                        />
+                                    </div>
+
+                                    <div className="flex-[2] min-w-[200px]">
+                                        <h2 className="font-medium mb-2">Filter by</h2>
+                                        <div className="flex gap-4">
+                                            <FilterButton
+                                                label="Categories"
+                                                value={selectedCategory}
+                                                setValue={setSelectedCategory}
+                                            />
+                                            <FilterButton
+                                                label="Progress"
+                                                value={selectedProgress}
+                                                setValue={setSelectedProgress}
+                                            />
+                                            <FilterButton
+                                                label="Instructor"
+                                                value={selectedInstructor}
+                                                setValue={setSelectedInstructor}
+                                            />
+                                            <button className="px-4 py-2 text-gray-600 hover:text-gray-800">
+                                                Reset
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div className="flex-1 min-w-[200px]">
+                                        <div className="relative">
+                                            <input
+                                                type="text"
+                                                placeholder="Search my courses"
+                                                value={searchQuery}
+                                                onChange={(e) => setSearchQuery(e.target.value)}
+                                                className="w-full pl-10 pr-4 py-2 border rounded"
+                                            />
+                                            <span className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400">
+                                                🔍
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Content section */}
+                            <div className={activeTab === 'All courses' ?
+                                "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" :
+                                "grid grid-cols-1 gap-6"
+                            }>
+                                {activeTab === 'All courses' && courses.map(course => (
+                                    <CourseCard key={course.id} course={course} />
+                                ))}
+
+                                {activeTab === 'Learning paths' && learningPaths.map(path => (
+                                    <LearningPathCard key={path.id} path={path} />
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                );
+            };
+
+            const root = ReactDOM.createRoot(document.getElementById('root'));
+            root.render(<MyLearningDashboard />);
+        </script>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

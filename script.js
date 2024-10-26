@@ -502,6 +502,110 @@ const DashboardHandler = {
     },
 };
 
+// Learning Dashboard Handler (Lab5)
+const LearningDashboardHandler = {
+    init() {
+        this.watchedTime = document.querySelector('.watched-time');
+        this.courseGrid = document.querySelector('.course-grid');
+        this.searchInput = document.querySelector('.search-input');
+        this.filterButtons = document.querySelectorAll('.filter-button');
+        this.navigationTabs = document.querySelector('.navigation-tabs');
+        
+        this.setupEventListeners();
+        this.loadCourses();
+    },
+
+    setupEventListeners() {
+        // Search functionality
+        this.searchInput?.addEventListener('input', (e) => {
+            this.filterCourses(e.target.value);
+        });
+
+        // Filter buttons
+        this.filterButtons?.forEach(button => {
+            button.addEventListener('click', () => {
+                this.toggleFilter(button);
+            });
+        });
+
+        // Navigation tabs
+        this.navigationTabs?.addEventListener('click', (e) => {
+            if (e.target.tagName === 'BUTTON') {
+                this.switchTab(e.target);
+            }
+        });
+    },
+
+    filterCourses(searchTerm) {
+        const courses = document.querySelectorAll('.course-card');
+        courses.forEach(course => {
+            const title = course.querySelector('h3').textContent.toLowerCase();
+            const matches = title.includes(searchTerm.toLowerCase());
+            course.style.display = matches ? 'block' : 'none';
+        });
+    },
+
+    toggleFilter(button) {
+        const wasActive = button.classList.contains('active');
+        
+        // Reset all filters in the same group
+        const filterGroup = button.closest('.filter-group');
+        filterGroup?.querySelectorAll('.filter-button').forEach(btn => {
+            btn.classList.remove('active');
+        });
+
+        if (!wasActive) {
+            button.classList.add('active');
+            this.applyFilters();
+        }
+    },
+
+    switchTab(tab) {
+        // Remove active class from all tabs
+        this.navigationTabs.querySelectorAll('button').forEach(t => {
+            t.classList.remove('active');
+        });
+        
+        // Add active class to clicked tab
+        tab.classList.add('active');
+        
+        // Update content based on selected tab
+        this.loadCourses(tab.textContent.toLowerCase());
+    },
+
+    applyFilters() {
+        const activeFilters = {
+            category: document.querySelector('.category-filter .active')?.dataset.value,
+            progress: document.querySelector('.progress-filter .active')?.dataset.value,
+            instructor: document.querySelector('.instructor-filter .active')?.dataset.value
+        };
+
+        // Apply filters to courses
+        const courses = document.querySelectorAll('.course-card');
+        courses.forEach(course => {
+            let shouldShow = true;
+            
+            // Check each active filter
+            if (activeFilters.category && course.dataset.category !== activeFilters.category) {
+                shouldShow = false;
+            }
+            if (activeFilters.progress && course.dataset.progress !== activeFilters.progress) {
+                shouldShow = false;
+            }
+            if (activeFilters.instructor && course.dataset.instructor !== activeFilters.instructor) {
+                shouldShow = false;
+            }
+
+            course.style.display = shouldShow ? 'block' : 'none';
+        });
+    },
+
+    loadCourses(tabName = 'all courses') {
+        // You can implement actual course loading logic here
+        console.log(`Loading courses for ${tabName} tab`);
+    }
+};
+
 // Initialize all handlers when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     NavigationHandler.init();
@@ -510,6 +614,7 @@ document.addEventListener('DOMContentLoaded', () => {
     LoginFormHandler.init();
     StudyMaterialApp.init();
     DashboardHandler.init();
+    LearningDashboardHandler.init();
 });
 
 // Global functions (moved from inline HTML)
