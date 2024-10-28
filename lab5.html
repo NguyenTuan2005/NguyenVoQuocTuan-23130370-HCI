@@ -6,21 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        .section {
-            display: none;
-            padding: 20px;
-        }
-
-        .section.active {
-            display: block;
-        }
-
-        main {
-            padding-left: 0;
-        }
-    </style>
-
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Hci2025</title>
 </head>
@@ -81,7 +66,7 @@
                         provider: "Learn The Part Inc., Rayan Slim",
                         progress: 100,
                         rating: 0,
-                        imageUrl: "img/Integration-Introduction.jpg"
+                        imageUrl: "img/Spring_Boot_Bootcamp.jpg"
                     },
                     {
                         id: 3,
@@ -89,7 +74,7 @@
                         provider: "Chinna Reddy",
                         progress: 1,
                         rating: 0,
-                        imageUrl: "img/Integration-Introduction.jpg"
+                        imageUrl: "img/MuleSoft_4.X_Guide.jpg"
                     },
                     {
                         id: 4,
@@ -97,7 +82,7 @@
                         provider: "Mister Rabiey",
                         progress: 15,
                         rating: 5,
-                        imageUrl: "img/Integration-Introduction.jpg"
+                        imageUrl: "img/504_Essential_Words.jpg"
                     }
                 ];
 
@@ -110,7 +95,7 @@
                         completedItems: 1,
                         totalItems: 6,
                         progress: (1 / 6) * 100,
-                        imageUrl: "img/Integration-Introduction.jpg"
+                        imageUrl: "img/Find_Out_for_Yourself.jpg"
                     },
                     {
                         id: 2,
@@ -119,7 +104,7 @@
                         completedItems: 9,
                         totalItems: 9,
                         progress: 100,
-                        imageUrl: "img/Integration-Introduction.jpg"
+                        imageUrl: "img/BO_IT_Mandatory.jpg"
                     }
                 ];
 
@@ -206,9 +191,9 @@
                     <div className="min-h-screen bg-gray-50 p-6">
                         <div className="max-w-7xl mx-auto">
                             <div className="mb-8">
-                                <h1 className="text-3xl font-bold mb-4">My learning</h1>
+                                <h1 className="text-3xl text-blue-500 font-bold mb-4">My learning</h1>
                                 <div className="flex items-center text-gray-600">
-                                    <span className="font-semibold">87hr 36min</span> watched •
+                                    <span className="font-semibold mx-2">87hr 36min</span> watched •
                                     <button className="ml-2 text-blue-600 hover:underline">
                                         View all activity
                                     </button>
@@ -220,7 +205,8 @@
                                     {['All courses', 'Learning paths', 'Certifications', 'Archived', 'Learning tools'].map((item) => (
                                         <li key={item}>
                                             <button
-                                                className={`pb-2 px-1 ${activeTab === item ? 'border-b-2 border-blue-600 text-blue-600' : 'text-gray-600'}`}
+                                                // className={`pb-2 px-1 ${activeTab === item ? 'border-b-2 border-blue-600 text-blue-600 ' : 'text-gray-600'}`}
+                                                className={`tab-button ${activeTab === item ? 'active' : 'tab-button'}`}
                                                 onClick={() => setActiveTab(item)}
                                             >
                                                 {item}

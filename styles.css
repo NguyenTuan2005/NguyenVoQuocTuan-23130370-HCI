@@ -242,6 +242,27 @@ nav {
     margin: 0;
 }
 
+.navigation-tabs {
+    display: flex;
+    gap: 1rem;
+    border-bottom: 1px solid var(--shadow-color);
+    margin-bottom: 2rem;
+}
+
+.tab-button {
+    padding: 0.5rem 1rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: color var(--transition-time);
+    color: #666;
+}
+
+.tab-button.active {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+}
+
 /* ==========================================================================
    Form Elements
    ========================================================================== */
@@ -1305,27 +1326,6 @@ button#deleteButton {
 
 .dashboard-container {
     background-color: var(--background-color);
-}
-
-.navigation-tabs {
-    display: flex;
-    gap: 1rem;
-    border-bottom: 1px solid var(--shadow-color);
-    margin-bottom: 2rem;
-}
-
-.tab-button {
-    padding: 0.5rem 1rem;
-    border: none;
-    background: none;
-    cursor: pointer;
-    transition: color var(--transition-time);
-    color: #666;
-}
-
-.tab-button.active {
-    color: var(--primary-color);
-    border-bottom: 2px solid var(--primary-color);
 }
 
 .course-content {
