@@ -6,75 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Hci2025</title>
-    <style>
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .header img {
-            border-radius: 50%;
-            width: 100px;
-            height: 100px;
-        }
-        .header h1 {
-            margin: 10px 0 5px;
-            font-size: 24px;
-        }
-        .header h2 {
-            margin: 0;
-            font-size: 18px;
-            color: #777;
-        }
-        .contact-info {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 14px;
-            color: #555;
-        }
-        .section {
-            margin-bottom: 20px;
-        }
-        .section h3 {
-            border-bottom: 2px solid #000;
-            padding-bottom: 5px;
-            margin-bottom: 10px;
-            font-size: 18px;
-        }
-        .flex-container {
-            display: flex;
-            justify-content: space-between;
-        }
-        .profile, .experience, .education, .references {
-            width: 48%;
-        }
-        .skills {
-            justify-content: space-between;
-        }
-        .skills ul {
-            width: 48%;
-            margin: 0 20px;
-        }
-        .skills ul li {
-            margin-bottom: 5px;
-        }
-        .skills .bar {
-            background-color: #ddd;
-            border-radius: 5px;
-            overflow: hidden;
-            height: 10px;
-        }
-        .skills .bar div {
-            height: 100%;
-            background-color: #333;
-        }
-    </style>
 </head>
 
 <body>
@@ -82,62 +13,74 @@
     <header id="mainHeader">
         <nav>
             <ul class="menu">
-                <li><a href="index.html" id="home-tab" >Home</a></li>
-                <li><a href="about.html" id="about-tab" >About</a></li>
-                <li><a href="labs.html" id="labs-tab" >Labs</a></li>
+                <li><a href="index.html" id="home-tab">Home</a></li>
+                <li><a href="about.html" id="about-tab">About</a></li>
+                <li><a href="labs.html" id="labs-tab">Labs</a></li>
             </ul>
         </nav>
     </header>
 
     <!-- Main Content -->
     <main>
-        <section class="content" id="about-content">
-            <div class="container">
-                <div class="header">
-                    <img src="img/avatar-img.jpg" alt="Profile Picture">
-                    <h1>Nguyen Vo Quoc Tuan</h1>
-                    <h2>Business Analyst</h2>
-                </div>
-                <div class="contact-info">
-                    <p>+84 356916931 | work.thanielnguyen@gmail.com | Đồng Nai, Việt Nam</p>
-                    <p><a href="https://www.facebook.com/profile.php?id=100040384152520" target="_blank">facebook.com/Tuannguyen</a> | twitter.com/yourname | linkedin.com/yourname</p>
-                </div>
-                <div class="flex-container">
-                    <div class="profile section">
-                        <h3>Profile</h3>
-                        <p>This section is used to describe your professional career. Let the potential employer know why they would want to hire you...</p>
+        <div id="root"></div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.development.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.development.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.22.20/babel.min.js"></script>
+        <script type="text/babel">
+            const CV = () => {
+                return (
+                    <div className="cv-container">
+                        <section className="header">
+                            <h1 className="title">Thaniel Nguyen</h1>
+                            <p className="subtitle">Frontend Developer Intern</p>
+                            <div className="contact-info">
+                                <span>0356916931</span>
+                                <span>work.thanielnguyen@gmail.com</span>
+                                <span>Bien Hoa, Dong Nai, Vietnam</span>
+                            </div>
+                        </section>
+
+                        <section className="section">
+                            <h2 className="section-title">Profile</h2>
+                            <p className="section-text">
+                                Dynamic Frontend Developer Intern with a Bachelor of Information Technology from Nong Lam University...
+                            </p>
+                        </section>
+
+                        <section className="section">
+                            <h2 className="section-title">Education</h2>
+                            <div>
+                                <p className="education-title">Bachelor of Information Technology, Nong Lam University</p>
+                                <p className="education-date">Aug 2023 — Present</p>
+                            </div>
+                        </section>
+
+                        <section className="section">
+                            <h2 className="section-title">Skills</h2>
+                            <ul className="skills-list">
+                                <li>Using Git to manage versions and publish projects on GitHub</li>
+                                <li>Microsoft Excel, PowerPoint</li>
+                                <li>English</li>
+                            </ul>
+                        </section>
+
+                        <section className="section">
+                            <h2 className="section-title">Languages</h2>
+                            <p className="section-text">English</p>
+                        </section>
+
+                        <section className="section">
+                            <h2 className="section-title">Courses</h2>
+                            <p className="course-title">MOS, Tin hoc Minh Long</p>
+                            <p className="course-date">Aug 2023 — Oct 2023</p>
+                        </section>
                     </div>
-                    <div class="experience section">
-                        <h3>Experience</h3>
-                        <p>None</p>
-                    </div>
-                </div>
-                <div class="flex-container">
-                    <div class="education section">
-                        <h3>Education</h3>
-                        <p><strong>2023 - Present</strong><br>Bachelor / Imformation Technology<br>Nong Lam University, Thu Duc</p>
-                    </div>
-                    <div class="references section">
-                        <h3>References</h3>
-                    </div>
-                </div>
-                <div class="skills section">
-                    <h3>Skills</h3>
-                    <div style="display: flex;">
-                        <ul>
-                            <li>Social Media<div class="bar"><div style="width: 60%;"></div></div></li>
-                            <li>Microsoft Excel<div class="bar"><div style="width: 60%;"></div></div></li>
-                        </ul>
-                        <ul>
-                            <li>Organization<div class="bar"><div style="width: 75%;"></div></div></li>
-                            <li>Communication<div class="bar"><div style="width: 80%;"></div></div></li>
-                            <li>Creativity<div class="bar"><div style="width: 60%;"></div></div></li>
-                            <li>Hard Working<div class="bar"><div style="width: 90%;"></div></div></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>        
-        </section>
+                );
+            };
+
+            const root = ReactDOM.createRoot(document.getElementById('root'));
+            root.render(<CV />);
+        </script>
     </main>
 
     <script src="script.js"></script>

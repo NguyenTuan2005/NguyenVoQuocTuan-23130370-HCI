@@ -13,6 +13,7 @@
     --background-color: white;
     --primary-color: #1a73e8;
     --secondary-color: #ffb74d;
+    --third-color: #333;
     --error-color: #e74c3c;
     --success-color: #4CAF50;
     --shadow-color: rgba(0, 0, 0, 0.1);
@@ -99,7 +100,7 @@ h1 {
 }
 
 h2 {
-    color: var(--primary-color);
+    color: var(--third-color);
     margin-bottom: 10px;
 }
 
@@ -119,6 +120,16 @@ label {
 .content p {
     color: #555;
     align-content: center;
+}
+
+.title {
+    font-size: 1.875rem;
+    font-weight: 600;
+    color: var(--third-color);
+}
+
+.subtitle {
+    color: #4B5563;
 }
 
 /* ==========================================================================
@@ -332,6 +343,65 @@ button {
 
 button:hover {
     opacity: 0.9;
+}
+
+/* ==========================================================================
+   About Styles
+   ========================================================================== */
+.cv-container {
+    background-color: white;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    padding: 2rem;
+    width: 100%;
+    max-width: 48rem;
+    margin: 0 auto;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    color: #6B7280;
+    margin-top: 1rem;
+}
+
+.section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--third-color);
+    border-bottom: 2px solid #E5E7EB;
+    padding-bottom: 0.25rem;
+    margin-bottom: 1rem;
+}
+
+.section-text {
+    color: #374151;
+}
+
+.education-title {
+    color: #1F2937;
+    font-weight: 500;
+}
+
+.education-date {
+    color: #6B7280;
+}
+
+.skills-list {
+    color: #374151;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.course-title {
+    color: #1F2937;
+    font-weight: 500;
+}
+
+.course-date {
+    color: #6B7280;
 }
 
 /* ==========================================================================
@@ -1371,10 +1441,10 @@ button#deleteButton {
 }
 
 .recommended-course-card .course-image {
-    width: 100%; 
-    height: 100px; 
+    width: 100%;
+    height: 100px;
     display: flex;
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
     overflow: hidden;
 }
@@ -1392,6 +1462,250 @@ button#deleteButton {
 .personalize-button {
     margin-top: 10px;
 }
+
+/* ==========================================================================
+   Lab 6 Styles
+   ========================================================================== */
+
+.app-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.card-container {
+    width: 300px;
+    padding: 20px;
+    background-color: var(--background-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    margin: 10px;
+    transition: transform var(--transition-time);
+    cursor: pointer;
+}
+
+.card-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+.icon-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.icon {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.badge {
+    background-color: #f0f0f0;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.description {
+    color: #666;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.button-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.continue-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color var(--transition-time);
+}
+
+.continue-button:hover {
+    background-color: #1557b0;
+}
+
+.guide-button {
+    background-color: transparent;
+    color: #666;
+    border: 1px solid #ddd;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all var(--transition-time);
+}
+
+.guide-button:hover {
+    background-color: #f5f5f5;
+    border-color: #999;
+}
+
+.title-testCard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.unitTest-container {
+    border-radius: 10px;
+    background-color: var(--background-color);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.unitTest-header {
+    display: flex;
+}
+
+.challengeEditor-header, .unitTest-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.unitTest-close-button, .unitTest-close-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.unitTest-close-button:hover, .unitTest-close-button:hover {
+    background: #ced2d7;
+}
+
+.ide-button {
+    width: 100%;
+    padding: 15px;
+    background-color: #1e2a38;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.ide-button:hover {
+    background-color: #2c3e50;
+}
+
+.challengeEditor-header {
+    display: flex;
+}
+
+.toolbar-btn {
+    padding: 4px 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: white;
+    cursor: pointer;
+}
+
+.toolbar-btn:hover {
+    background: #eee;
+}
+
+.content-editor {
+    width: 100%;
+    min-height: 200px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin: 20px 0;
+    font-family: monospace;
+    resize: vertical;
+}
+
+/* Add these new styles to your existing CSS */
+
+.test-cases-section {
+    margin: 20px 0;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 4px;
+}
+
+.type-selectors {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.input-type,
+.output-type {
+    flex: 1;
+}
+
+.test-cases h3 {
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.info-icon {
+    color: #1a73e8;
+    cursor: help;
+}
+
+.test-cases-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.test-case-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.test-input,
+.test-output {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: monospace;
+}
+
+.arrow {
+    color: #666;
+    font-size: 18px;
+}
+
+/* Style adjustments for the type selectors */
+.type-selectors label {
+    display: block;
+    margin-bottom: 8px;
+    color: #666;
+    font-weight: 500;
+}
+
+.type-selectors select {
+    width: 100%;
+}
+
 /* ==========================================================================
    Responsive Design
    ========================================================================== */
