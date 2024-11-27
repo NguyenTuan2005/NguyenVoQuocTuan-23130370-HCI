@@ -48,141 +48,73 @@
     <!-- Main Content -->
     <main>
         <section class="content" id="lab1-content">
-            <section class="lab-groups">
-                <div class="group-card" onclick="window.toggleGroup('group1')">
-                    <h2>Group 1: Creating Account</h2>
-                    <p>Click to view more</p>
-                </div>
-                <div id="group1" class="group-content">
-                    <form id="accountForm">
-                        <div class="form-group">
-                            <label for="username">Username: </label>
-                            <input type="text" name="username" maxlength="255" required
-                                placeholder="Enter your username">
-                            <span class="error-message" id="usernameError"></span> <!-- Inline error message -->
-                        </div>
-
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <i class="password-toggle fas fa-eye" onclick="togglePassword()"></i>
-                            <input type="password" id="password" name="password" minlength="8" maxlength="255" required
-                                placeholder="Enter your password">
-                            <span class="error-message" id="passwordError"></span> <!-- Inline error message -->
-                        </div>
-
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" name="email" maxlength="255" required placeholder="Enter your email"
-                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
-                            <span class="error-message" id="emailError"></span> <!-- Inline error message -->
-                        </div>
-
-                        <div class="form-group">
-                            <label for="fullName">Full Name (Optional):</label>
-                            <input type="text" name="fullName" placeholder="Enter your full name">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="role">Role: </label>
-                            <select name="role" required title="Select a role">
-                                <option value="User">User</option>
-                                <option value="Admin">Admin</option>
-                            </select>
-                            <span class="error-message" id="roleError"></span> <!-- Inline error message -->
-                        </div>
-
-                        <div>
-                            <label for="profilePicture">Profile Picture:</label>
-                            <div class="file-upload-area" id="file-upload-area">
-                                <p>Drag and drop a file here or</p>
-                                <input type="file" name="profilePicture" accept="image/*" id="profilePictureInput">
-                                <input type="url" name="profilePictureUrl" placeholder="Or enter image URL">
-                            </div>
-                            <div>
-                                <img id="profilePreview" src="#" alt="Profile Preview"
-                                    style="display: none; width: 100px; height: 100px;">
-                            </div>
-                        </div>
-
-                        <div class="form-field">
-                            <label for="accCreatedAt">Account Created At</label>
-                            <input type="text" id="accCreatedAt" name="accCreatedAt" readonly>
-                        </div>
-
-                        <div class="form-field">
-                            <label for="lastUpdatedAt">Last Updated At</label>
-                            <input type="text" id="lastUpdatedAt" name="lastUpdatedAt" readonly>
-                        </div>
-
-                        <!-- Buttons: Submit and Cancel -->
-                        <div class="button-group">
-                            <button type="submit" id="submitButton" disabled>Create Account</button>
-                            <button type="button" id="cancelButton" class="cancel-button">Cancel</button>
-                            <!-- New Cancel Button -->
-                        </div>
-                    </form>
-
+            <form id="accountForm">
+                <div class="form-group">
+                    <label for="username">Username: </label>
+                    <input type="text" name="username" maxlength="255" required
+                        placeholder="Enter your username">
+                    <span class="error-message" id="usernameError"></span> <!-- Inline error message -->
                 </div>
 
-                <div class="group-card" onclick="window.toggleGroup('group2')">
-                    <h2>Group 2: Course Management</h2>
-                    <p>Click to view more</p>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <i class="password-toggle fas fa-eye" onclick="togglePassword()"></i>
+                    <input type="password" id="password" name="password" minlength="8" maxlength="255" required
+                        placeholder="Enter your password">
+                    <span class="error-message" id="passwordError"></span> <!-- Inline error message -->
                 </div>
-                <div id="group2" class="group-content">
-                    <div class="course-container">
-                        <h1>Course Management</h1>
-                        <form id="courseForm">
-                            <!-- Course ID (read-only) -->
-                            <div class="form-group">
-                                <label for="courseId">Course ID:</label>
-                                <input type="text" id="courseId" name="courseId" readonly>
-                            </div>
 
-                            <!-- Course Name -->
-                            <div class="form-group">
-                                <label for="courseName">Course Name <span class="required">*</span>:</label>
-                                <input type="text" id="courseName" name="courseName" maxlength="255" required>
-                            </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" name="email" maxlength="255" required placeholder="Enter your email"
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                    <span class="error-message" id="emailError"></span> <!-- Inline error message -->
+                </div>
 
-                            <!-- Course Description -->
-                            <div class="form-group">
-                                <label for="courseDescription">Course Description (Optional):</label>
-                                <textarea id="courseDescription" name="courseDescription" rows="5"></textarea>
-                            </div>
+                <div class="form-group">
+                    <label for="fullName">Full Name (Optional):</label>
+                    <input type="text" name="fullName" placeholder="Enter your full name">
+                </div>
 
-                            <!-- Instructor (Created By) -->
-                            <div class="form-group">
-                                <label for="createdBy">Instructor:</label>
-                                <select id="createdBy" name="createdBy" required>
-                                    <option value="" disabled selected>Select an Instructor</option>
-                                    <!-- Options should be populated dynamically -->
-                                    <option value="1">Instructor 1</option>
-                                    <option value="2">Instructor 2</option>
-                                </select>
-                            </div>
+                <div class="form-group">
+                    <label for="role">Role: </label>
+                    <select name="role" required title="Select a role">
+                        <option value="User">User</option>
+                        <option value="Admin">Admin</option>
+                    </select>
+                    <span class="error-message" id="roleError"></span> <!-- Inline error message -->
+                </div>
 
-                            <!-- Created At (read-only) -->
-                            <div class="form-group">
-                                <label for="createdAt">Created At:</label>
-                                <input type="text" id="createdAt" name="createdAt" readonly>
-                            </div>
-
-                            <!-- Updated At (read-only) -->
-                            <div class="form-group">
-                                <label for="updatedAt">Last Updated:</label>
-                                <input type="text" id="updatedAt" name="updatedAt" readonly>
-                            </div>
-
-                            <!-- Action Buttons -->
-                            <div class="form-actions">
-                                <button type="submit" id="createButton">Create Course</button>
-                                <button type="button" id="updateButton">Update Course</button>
-                                <button type="button" id="deleteButton" class="danger">Delete Course</button>
-                            </div>
-                        </form>
+                <div>
+                    <label for="profilePicture">Profile Picture:</label>
+                    <div class="file-upload-area" id="file-upload-area">
+                        <p>Drag and drop a file here or</p>
+                        <input type="file" name="profilePicture" accept="image/*" id="profilePictureInput">
+                        <input type="url" name="profilePictureUrl" placeholder="Or enter image URL">
+                    </div>
+                    <div>
+                        <img id="profilePreview" src="#" alt="Profile Preview"
+                            style="display: none; width: 100px; height: 100px;">
                     </div>
                 </div>
-            </section>
+
+                <div class="form-field">
+                    <label for="accCreatedAt">Account Created At</label>
+                    <input type="text" id="accCreatedAt" name="accCreatedAt" readonly>
+                </div>
+
+                <div class="form-field">
+                    <label for="lastUpdatedAt">Last Updated At</label>
+                    <input type="text" id="lastUpdatedAt" name="lastUpdatedAt" readonly>
+                </div>
+
+                <!-- Buttons: Submit and Cancel -->
+                <div class="button-group">
+                    <button type="submit" id="submitButton" disabled>Create Account</button>
+                    <button type="button" id="cancelButton" class="cancel-button">Cancel</button>
+                    <!-- New Cancel Button -->
+                </div>
+            </form>
         </section>
     </main>
 

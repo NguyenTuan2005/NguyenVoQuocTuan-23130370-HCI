@@ -111,7 +111,7 @@
 
                 const FilterButton = ({ label, value, setValue, options }) => (
                     <div className="relative">
-                        <button className="flex items-center gap-2 px-4 py-2 border rounded hover:bg-gray-50">
+                        <button className="flex items-center gap-2 px-4 py-2 rounded btn btn-outline-secondary shadow-md">
                             {label} <span className="w-4 h-4">▼</span>
                         </button>
                     </div>
@@ -191,35 +191,36 @@
                 return (
                     <div className="min-h-screen bg-gray-50 p-6">
                         <div className="max-w-7xl mx-auto">
-                            <div className="mb-8">
-                                <h1 className="text-3xl text-blue-500 font-bold mb-4">My learning</h1>
-                                <div className="flex items-center text-gray-600">
-                                    <span className="font-semibold mx-2">87hr 36min</span> watched •
-                                    <button className="ml-2 text-blue-600 hover:underline">
-                                        View all activity
-                                    </button>
+                            <div className="bg-white shadow-md rounded">
+                                <div className="p-3">
+                                    <h1 className="text-5xl text-secondary text-start font-bold mb-4">MY LEARNING</h1>
+                                    <div className="flex items-center text-gray-600">
+                                        <span className="font-semibold mx-2">87hr 36min</span> watched •
+                                        <button className="ml-2 text-blue-600 hover:underline">
+                                            View all activity
+                                        </button>
+                                    </div>
                                 </div>
+    
+                                <nav className="mb-8">
+                                    <ul className="flex gap-6 border-b">
+                                        {['All courses', 'Learning paths', 'Certifications', 'Archived', 'Learning tools'].map((item) => (
+                                            <li key={item}>
+                                                <button
+                                                    className={`tab-button ${activeTab === item ? 'active' : 'tab-button'}`}
+                                                    onClick={() => setActiveTab(item)}
+                                                >
+                                                    {item}
+                                                </button>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </nav>
                             </div>
-
-                            <nav className="mb-8">
-                                <ul className="flex gap-6 border-b">
-                                    {['All courses', 'Learning paths', 'Certifications', 'Archived', 'Learning tools'].map((item) => (
-                                        <li key={item}>
-                                            <button
-                                                // className={`pb-2 px-1 ${activeTab === item ? 'border-b-2 border-blue-600 text-blue-600 ' : 'text-gray-600'}`}
-                                                className={`tab-button ${activeTab === item ? 'active' : 'tab-button'}`}
-                                                onClick={() => setActiveTab(item)}
-                                            >
-                                                {item}
-                                            </button>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </nav>
 
                             {/* Filters section - show only for All courses tab */}
                             {activeTab === 'All courses' && (
-                                <div className="flex flex-wrap items-center gap-4 mb-8">
+                                <div className="flex flex-wrap items-end gap-4 mb-8">
                                     <div className="flex-1 min-w-[200px]">
                                         <h2 className="font-medium mb-2">Sort by</h2>
                                         <FilterButton
@@ -247,14 +248,14 @@
                                                 value={selectedInstructor}
                                                 setValue={setSelectedInstructor}
                                             />
-                                            <button className="px-4 py-2 text-gray-600 hover:text-gray-800">
+                                            <button className="flex items-center gap-2 px-4 py-2 rounded btn btn-light shadow-md hover:bg-gray-50">
                                                 Reset
                                             </button>
                                         </div>
                                     </div>
 
                                     <div className="flex-1 min-w-[200px]">
-                                        <div className="relative">
+                                        <div className="relative align-bottom">
                                             <input
                                                 type="text"
                                                 placeholder="Search my courses"

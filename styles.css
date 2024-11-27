@@ -211,48 +211,7 @@ nav {
     border-bottom: 2px solid var(--secondary-color);
 }
 
-/* Group Card Styling */
-.lab-groups {
-    margin: 100px 20px;
-}
-
-.group {
-    overflow: hidden;
-    transition: max-height var(--transition-time) ease, opacity var(--transition-time) ease;
-}
-
-.group-card {
-    background-color: #f0f0f0;
-    padding: 20px;
-    margin-bottom: 10px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color var(--transition-time) ease;
-}
-
-.group-card:hover {
-    background-color: #e2e2e2;
-}
-
-.group-content {
-    background-color: var(--background-color);
-    margin-bottom: 15px;
-    border-left: 4px solid #0044cc;
-    opacity: 0;
-    max-height: 0;
-    overflow: hidden;
-    transition: opacity var(--transition-time) ease-in-out, max-height var(--transition-time) ease-in-out;
-}
-
-.group-content.show {
-    opacity: 1;
-}
-
-.group-card h2,
-.group-card p {
-    margin: 0;
-}
-
+/*Tab Styling */
 .navigation-tabs {
     display: flex;
     gap: 1rem;
@@ -467,48 +426,6 @@ button:hover {
 .cancel-button {
     background-color: #e74c3c;
     color: white;
-}
-
-/* ==========================================================================
-   Lab 1 - Group 2 Styles
-   ========================================================================== */
-.course-container {
-    background-color: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    margin: auto;
-    width: auto;
-    animation: slideUp 0.5s ease-out;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-#courseForm {
-    padding: 5px;
-}
-
-.form-actions {
-    display: flex;
-    justify-content: space-between;
-}
-
-button#createButton {
-    background-color: var(--success-color);
-    color: white;
-    margin: 0 5px;
-}
-
-button#updateButton {
-    background-color: var(--primary-color);
-    color: white;
-    margin: 0 5px;
-}
-
-button#deleteButton {
-    background-color: var(--error-color);
-    color: white;
-    margin: 0 5px;
 }
 
 /* ==========================================================================
