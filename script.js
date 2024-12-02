@@ -13,31 +13,6 @@ const DateUtils = {
     }
 };
 
-// Navigation Highlighting
-const NavigationHandler = {
-    init() {
-        const currentPage = window.location.pathname.split('/').pop();
-        this.highlightMainNav(currentPage);
-        this.highlightLabMenu(currentPage);
-    },
-
-    highlightMainNav(currentPage) {
-        if (currentPage.includes('lab')) {
-            document.querySelector('.menu a[href="labs.html"]')?.classList.add('active');
-        } else {
-            document.querySelector(`.menu a[href="${currentPage}"]`)?.classList.add('active');
-        }
-    },
-
-    highlightLabMenu(currentPage) {
-        if (currentPage === 'labs.html') {
-            document.querySelector('.lab-menu a[href="lab1.html"]')?.classList.add('active');
-        } else if (currentPage.includes('lab')) {
-            document.querySelector(`.lab-menu a[href="${currentPage}"]`)?.classList.add('active');
-        }
-    }
-};
-
 // Account Form Handler (Lab1)
 const AccountFormHandler = {
     init() {
@@ -174,135 +149,6 @@ const LoginFormHandler = {
         this.appendChild(ripple);
 
         setTimeout(() => ripple.remove(), 600);
-    }
-};
-
-// Study Material Handling (Lab3)
-const StudyMaterialApp = {
-    init() {
-        this.tabContainer = document.querySelector('.tab-container');
-        this.modal = document.getElementById('previewModal');
-        this.previewFrame = document.getElementById('previewFrame');
-        this.addLectureModal = document.getElementById('add-lecture-modal');
-        this.lectureTitleInput = document.getElementById('lecture-title');
-        this.lectureFileInput = document.getElementById('lecture-file');
-        this.subject = ''; // To track which subject is currently active
-
-        this.addEventListeners();
-    },
-
-    addEventListeners() {
-        if (this.tabContainer) {
-            this.tabContainer.addEventListener('click', (event) => {
-                if (event.target.classList.contains('tab-link')) {
-                    this.openTab(event);
-                } else if (event.target.tagName === 'BUTTON' && event.target.textContent === 'Add Lecture') {
-                    this.subject = event.target.parentElement.id;
-                    this.showAddLectureModal(); // Show modal instead of prompt
-                }
-            });
-        }
-
-        this.modal?.querySelector('.close-button').addEventListener('click', this.closePreview.bind(this));
-
-        const submitLectureBtn = document.getElementById('submit-lecture');
-        if (submitLectureBtn) {
-            submitLectureBtn.addEventListener('click', () => this.addLecture()); // Submit button for modal
-        }
-
-        // Close modal button event listener
-        const closeBtn = document.querySelector('.close-button');
-        if (closeBtn) {
-            closeBtn.addEventListener('click', this.closeAddLectureModal.bind(this));
-        }
-
-        // Material list items event listeners
-        document.querySelectorAll('.material-list a').forEach(link => {
-            if (link) {
-                link.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    const fileType = link.querySelector('i').className.includes('word') ? 'doc' :
-                        link.querySelector('i').className.includes('pdf') ? 'pdf' : 'ppt';
-                    this.showPreview(fileType, link.getAttribute('href'));
-                });
-            }
-        });
-    },
-
-    showAddLectureModal() {
-        this.lectureTitleInput.value = ''; // Reset the input field
-        this.lectureFileInput.value = ''; // Reset file input
-        this.addLectureModal.style.display = 'block'; // Show the modal
-    },
-
-    closeAddLectureModal() {
-        this.addLectureModal.style.display = 'none'; // Hide the modal
-    },
-
-    addLecture() {
-        const title = this.lectureTitleInput.value;
-        const file = this.lectureFileInput.files[0];
-
-        if (title && file) {
-            const fileExtension = file.name.split('.').pop();
-            let fileIcon;
-
-            // Determine file type and assign icon
-            if (fileExtension === 'pdf') {
-                fileIcon = '<i class="far fa-file-pdf"></i>';
-            } else if (fileExtension === 'doc' || fileExtension === 'docx') {
-                fileIcon = '<i class="far fa-file-word"></i>';
-            } else if (fileExtension === 'ppt' || fileExtension === 'pptx') {
-                fileIcon = '<i class="far fa-file-powerpoint"></i>';
-            } else {
-                alert('Unsupported file type!');
-                return;
-            }
-
-            // Add the lecture to the correct subject list
-            const list = document.querySelector(`#${this.subject} .material-list`);
-            const li = document.createElement('li');
-            li.innerHTML = `
-        <a href="#" onclick="StudyMaterialApp.showPreview('${fileExtension}', '#')">
-            ${fileIcon} ${title}
-        </a>`;
-            list.appendChild(li);
-
-            // Close the modal after submission
-            this.closeAddLectureModal();
-        } else {
-            alert('Please provide a title and select a file.');
-        }
-    },
-
-    // Existing preview and tab handling functions
-    openTab(event) {
-        const tabName = event.target.textContent.trim();
-
-        document.querySelectorAll('.tab-content').forEach(content => {
-            content.style.display = 'none';
-            content.classList.remove('active');
-        });
-
-        document.querySelectorAll('.tab-link').forEach(link => {
-            link.classList.remove('active');
-            link.setAttribute('aria-selected', 'false');
-        });
-
-        document.getElementById(tabName).style.display = 'block';
-        document.getElementById(tabName).classList.add('active');
-        event.target.classList.add('active');
-        event.target.setAttribute('aria-selected', 'true');
-    },
-
-    showPreview(type, url) {
-        this.previewFrame.src = url;
-        this.modal.style.display = 'block';
-    },
-
-    closePreview() {
-        this.previewFrame.src = '';
-        this.modal.style.display = 'none';
     }
 };
 
@@ -520,10 +366,8 @@ const LearningDashboardHandler = {
 
 // Initialize all handlers when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    NavigationHandler.init();
     AccountFormHandler.init();
     LoginFormHandler.init();
-    StudyMaterialApp.init();
     DashboardHandler.init();
     LearningDashboardHandler.init();
 });
@@ -537,4 +381,13 @@ function showSection(sectionId) {
         section.classList.remove('active');
     });
     document.getElementById(sectionId).classList.add('active');
+    document.querySelectorAll('.d-flex a').forEach(link => {
+        if (link.getAttribute('onclick') === `showSection('${sectionId}')`) {
+            link.classList.remove('fw-light');
+            link.classList.add('fw-bold');
+        } else {
+            link.classList.remove('fw-bold');
+            link.classList.add('fw-light');
+        }
+    });
 };

@@ -69,66 +69,10 @@
 
     <!-- Main Content -->
     <main style="min-height: calc(100vh - 104px);">
-        <h1>Share Study Materials</h1>
-        <div class="tab-container">
-            <div class="tab-menu" role="tablist">
-                <button class="tab-link active" role="tab" aria-selected="true"
-                    aria-controls="Mathematics">Mathematics</button>
-                <button class="tab-link" role="tab" aria-selected="false" aria-controls="Physics">Physics</button>
-            </div>
-
-            <div id="Mathematics" class="tab-content active" role="tabpanel">
-                <button class="add-lecture-button rounded-pill">Add Lecture</button>
-                <h2>Mathematics</h2>
-                <ul class="material-list">
-                    <li>
-                        <a href="https://example.com/math_lecture1.doc">
-                            <i class="far fa-file-word"></i> Lecture 1 - Introduction to Calculus
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://example.com/math_lecture1.doc">
-                            <i class="far fa-file-pdf"></i> Lecture 2 - Linear Algebra
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <div id="Physics" class="tab-content" role="tabpanel">
-                <button class="add-lecture-button rounded-pill">Add Lecture</button>
-                <h2>Physics</h2>
-                <ul class="material-list">
-                    <li>
-                        <a href="https://example.com/math_lecture1.ppt">
-                            <i class="far fa-file-powerpoint"></i> Lecture 1 - Classical Mechanics
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        <h1 class="pt-5">Share Study Materials</h1>
+        <div id="lab3-root"></div>
+        
     </main>
-
-    <div id="previewModal" class="modal">
-        <div class="modal-content">
-            <span class="close-button" onclick="closePreview()" style="margin: 20px">&times;</span>
-            <iframe id="previewFrame" style="width:100%;height:500px;"></iframe>
-        </div>
-    </div>
-
-    <!-- Add Lecture Modal -->
-    <div id="add-lecture-modal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <h2>Add Lecture</h2>
-            <input type="text" id="lecture-title" placeholder="Enter lecture title" required>
-            <div class="file-upload-area" id="file-upload-area">
-                <p>Drag and drop a file here or</p>
-                <input type="file" id="lecture-file" accept=".pdf,.doc,.ppt" required>
-            </div>
-            <button class="add-lecture-button" id="submit-lecture" style="float: none; font-size: 16px;">Add
-                Lecture</button>
-            <button class="cancel-button" onclick="StudyMaterialApp.closeAddLectureModal()">Cancel</button>
-        </div>
-    </div>
 
     <footer class="bg-light text-center py-4">
         <div class="container">
@@ -141,7 +85,7 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script type="text/babel" src="lab3.jsx"></script>
 </body>
 
 </html>
