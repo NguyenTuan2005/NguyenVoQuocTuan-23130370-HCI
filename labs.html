@@ -30,7 +30,7 @@
                             <a class="nav-link" href="about.html">About Us</a>
                         </li>
                         <li class="nav-item ms-4 me-4">
-                            <a class="nav-link active fw-bold" href="labs.html">Our Work</a>
+                            <a class="nav-link active fw-bold" href="labs.html">Labs</a>
                         </li>
                     </ul>
                 </div>
@@ -42,13 +42,22 @@
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav">
                         <li class="nav-item ms-4 me-4">
-                            <a class="nav-link" href="lab1.html" target="content-frame">Lab 1</a>
+                            <a class="nav-link fw-bold text-light" href="lab1.html">Lab 1</a>
                         </li>
                         <li class="nav-item ms-4 me-4">
-                            <a class="nav-link" href="lab2.html" target="content-frame">Lab 2</a>
+                            <a class="nav-link" href="lab2.html">Lab 2</a>
                         </li>
                         <li class="nav-item ms-4 me-4">
-                            <a class="nav-link" href="lab3.html" target="content-frame">Lab 3</a>
+                            <a class="nav-link" href="lab3.html">Lab 3</a>
+                        </li>
+                        <li class="nav-item ms-4 me-4">
+                            <a class="nav-link" href="lab4.html">Lab 4</a>
+                        </li>
+                        <li class="nav-item ms-4 me-4">
+                            <a class="nav-link" href="lab5.html">Lab 5</a>
+                        </li>
+                        <li class="nav-item ms-4 me-4">
+                            <a class="nav-link" href="lab6.html">Lab 6</a>
                         </li>
                     </ul>
                 </div>
@@ -58,10 +67,11 @@
 
     <main className="container-fluid p-0">
         <iframe
+            className="overflow-hidden"
             name="content-frame"
             title="Lab Content"
             src="lab1.html#content-only"
-            style="width: 100%; height: calc(100vh - 120px); border: none; overflow: hidden;"
+            style="width: 100%; border: none;"
         ></iframe>
     </main>
     
@@ -77,6 +87,17 @@
         </div>
     </footer>
 
+    <script>
+        function resizeIframe(iframe) {
+            iframe.style.height = iframe.contentWindow.document.body.scrollHeight + "px";
+        }
+    
+        const iframe = document.querySelector("iframe[name='content-frame']");
+    
+        iframe.addEventListener("load", () => {
+            resizeIframe(iframe);
+        });
+    </script>
 </body>
 
 </html>

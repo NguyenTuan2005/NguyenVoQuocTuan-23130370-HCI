@@ -6,33 +6,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.22.20/babel.min.js"></script>
     <title>Hci2025</title>
 </head>
 
 <body>
     <!-- Header and menu (unchanged) -->
     <header id="mainHeader">
-        <nav>
-            <ul class="menu">
-                <li><a href="index.html" id="home-tab">Home</a></li>
-                <li><a href="about.html" id="about-tab">About</a></li>
-                <li><a href="labs.html" id="labs-tab">Labs</a></li>
-            </ul>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
+            <div class="container">
+                <a class="navbar-brand" href="#">THANIEL</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item ms-4 me-4">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item ms-4 me-4">
+                            <a class="nav-link" href="about.html">About Us</a>
+                        </li>
+                        <li class="nav-item ms-4 me-4">
+                            <a class="nav-link active fw-bold" href="labs.html">Labs</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </nav>
 
-        <!-- Mini Menu for Labs (hidden by default) -->
-        <nav id="lab-menu" class="mini-menu">
-            <ul class="lab-menu">
-                <li><a href="lab1.html" id="lab1-tab">Lab 1</a></li>
-                <li><a href="lab2.html" id="lab2-tab">Lab 2</a></li>
-                <li><a href="lab3.html" id="lab3-tab">Lab 3</a></li>
-                <li><a href="lab4.html" id="lab4-tab">Lab 4</a></li>
-                <li><a href="lab5.html" id="lab5-tab">Lab 5</a></li>
-                <li><a href="lab6.html" id="lab6-tab">Lab 6</a></li>
-            </ul>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-secondary mt-5 position-sticky top-0">
+            <div class="container m-0">
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav">
+                        <li class="nav-item ms-4 me-4">
+                            <a class="nav-link" href="lab1.html">Lab 1</a>
+                        </li>
+                        <li class="nav-item ms-4 me-4">
+                            <a class="nav-link" href="lab2.html">Lab 2</a>
+                        </li>
+                        <li class="nav-item ms-4 me-4">
+                            <a class="nav-link" href="lab3.html">Lab 3</a>
+                        </li>
+                        <li class="nav-item ms-4 me-4">
+                            <a class="nav-link" href="lab4.html">Lab 4</a>
+                        </li>
+                        <li class="nav-item ms-4 me-4">
+                            <a class="nav-link fw-bold text-light" href="lab5.html">Lab 5</a>
+                        </li>
+                        <li class="nav-item ms-4 me-4">
+                            <a class="nav-link" href="lab6.html">Lab 6</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </nav>
     </header>
+
 
     <main>
         <!-- Root element for React -->
@@ -110,78 +144,106 @@
                 ];
 
                 const FilterButton = ({ label, value, setValue, options }) => (
-                    <div className="relative">
-                        <button className="flex items-center gap-2 px-4 py-2 rounded btn btn-outline-secondary shadow-md">
-                            {label} <span className="w-4 h-4">▼</span>
+                    <div className="dropdown">
+                        <button
+                            className="btn btn-outline-secondary dropdown-toggle"
+                            type="button"
+                            data-bs-toggle="dropdown"
+                        >
+                            {label}
                         </button>
+                        <ul className="dropdown-menu">
+                            {/* Add dropdown menu items if needed */}
+                        </ul>
                     </div>
                 );
 
                 const CourseCard = ({ course }) => (
-                    <div className="bg-white rounded-lg shadow hover:shadow-md transition-shadow">
-                        <div className="relative">
+                    <div className="card h-100 shadow-sm">
+                        <div className="position-relative">
                             <img
                                 src={course.imageUrl}
                                 alt={course.title}
-                                className="w-full h-40 object-cover rounded-t-lg"
+                                className="card-img-top object-fit-cover"
+                                style={{ height: '10rem' }}
                             />
-                            <button className="absolute top-2 right-2 p-1 hover:bg-gray-100 rounded-full">
-                                <span className="w-5 h-5">⋮</span>
+                            <button className="btn btn-light position-absolute top-0 end-0 m-2 rounded-circle">
+                                <i className="bi bi-three-dots"></i>
                             </button>
                         </div>
-                        <div className="p-4">
-                            <h3 className="font-semibold text-lg mb-1">{course.title}</h3>
-                            <p className="text-gray-600 text-sm mb-3">{course.provider}</p>
-                            <div className="flex items-center gap-2 mb-2">
-                                <div className="flex-1 h-2 bg-gray-200 rounded-full">
+                        <div className="card-body">
+                            <h3 className="card-title fs-5 fw-semibold mb-1">{course.title}</h3>
+                            <p className="card-text text-muted small mb-3">{course.provider}</p>
+                            <div className="mb-2">
+                                <div className="progress" style={{ height: '0.5rem' }}>
                                     <div
-                                        className="h-full rounded-full"
-                                        style={{ width: `${course.progress}%`, backgroundColor: 'var(--primary-color)' }}
-                                    />
+                                        className="progress-bar"
+                                        role="progressbar"
+                                        style={{
+                                            width: `${course.progress}%`,
+                                            backgroundColor: 'var(--primary-color)'
+                                        }}
+                                        aria-valuenow={course.progress}
+                                        aria-valuemin="0"
+                                        aria-valuemax="100"
+                                    ></div>
                                 </div>
-                                <span className="text-sm text-gray-600">{course.progress}% complete</span>
+                                <div className="d-flex justify-content-between align-items-center mt-1">
+                                    <span className="small text-muted">{course.progress}% complete</span>
+                                </div>
                             </div>
-                            <div className="flex items-center gap-1">
+                            <div className="course-rating">
                                 {[...Array(5)].map((_, i) => (
-                                    <span key={i} className={`text-lg ${i < course.rating ? 'text-yellow-400' : 'text-gray-300'}`}>
+                                    <span
+                                        key={i}
+                                        className={`fs-5 ${i < course.rating ? 'text-warning' : 'text-muted'}`}
+                                    >
                                         ★
                                     </span>
                                 ))}
-                                {course.rating === 0 && <span className="text-sm text-gray-600">Leave a rating</span>}
-                                {course.rating > 0 && <span className="text-sm text-gray-600">Your rating</span>}
+                                {course.rating === 0 && <span className="small text-muted ms-2">Leave a rating</span>}
+                                {course.rating > 0 && <span className="small text-muted ms-2">Your rating</span>}
                             </div>
                         </div>
                     </div>
                 );
 
                 const LearningPathCard = ({ path }) => (
-                    <div className="bg-white rounded-lg shadow hover:shadow-md transition-shadow p-4 ">
-                        <div className="flex items-start gap-4 ">
-                            <div className="course-card-image">
+                    <div className="card h-100 shadow-sm">
+                        <div className="card-body d-flex">
+                            <div className="me-3">
                                 <img
                                     src={path.imageUrl}
                                     alt={path.provider}
-                                    className="w-12 h-12 object-contain "
+                                    className="rounded"
+                                    style={{ width: '3rem', height: '3rem', objectFit: 'contain' }}
                                 />
                             </div>
-                            <div className="flex-1">
-                                <div className="flex justify-between items-start">
+                            <div className="flex-grow-1">
+                                <div className="d-flex justify-content-between align-items-start mb-2">
                                     <div>
-                                        <p className="text-sm text-gray-600 mb-1">Learning path</p>
-                                        <h3 className="font-semibold text-lg mb-3">{path.title}</h3>
+                                        <p className="small text-muted mb-1">Learning path</p>
+                                        <h3 className="card-title fs-5 fw-semibold">{path.title}</h3>
                                     </div>
-                                    <button className="p-1 hover:bg-gray-100 rounded-full">
-                                        <span className="w-5 h-5">⋮</span>
+                                    <button className="btn btn-light rounded-circle">
+                                        <i className="bi bi-three-dots"></i>
                                     </button>
                                 </div>
-                                <p className="text-sm text-gray-600 mb-2">
+                                <p className="small text-muted mb-2">
                                     {path.completedItems} of {path.totalItems} items complete
                                 </p>
-                                <div className="h-2 bg-gray-200 rounded-full">
+                                <div className="progress" style={{ height: '0.5rem' }}>
                                     <div
-                                        className="h-full rounded-full"
-                                        style={{ width: `${path.progress}%`, backgroundColor: 'var(--primary-color)' }}
-                                    />
+                                        className="progress-bar"
+                                        role="progressbar"
+                                        style={{
+                                            width: `${path.progress}%`,
+                                            backgroundColor: 'var(--primary-color)'
+                                        }}
+                                        aria-valuenow={path.progress}
+                                        aria-valuemin="0"
+                                        aria-valuemax="100"
+                                    ></div>
                                 </div>
                             </div>
                         </div>
@@ -189,100 +251,101 @@
                 );
 
                 return (
-                    <div className="min-h-screen bg-gray-50 p-6">
-                        <div className="max-w-7xl mx-auto">
-                            <div className="bg-white shadow-md rounded">
-                                <div className="p-3">
-                                    <h1 className="text-5xl text-secondary text-start font-bold mb-4">MY LEARNING</h1>
-                                    <div className="flex items-center text-gray-600">
-                                        <span className="font-semibold mx-2">87hr 36min</span> watched •
-                                        <button className="ml-2 text-blue-600 hover:underline">
-                                            View all activity
-                                        </button>
-                                    </div>
-                                </div>
-    
-                                <nav className="mb-8">
-                                    <ul className="flex gap-6 border-b">
-                                        {['All courses', 'Learning paths', 'Certifications', 'Archived', 'Learning tools'].map((item) => (
-                                            <li key={item}>
-                                                <button
-                                                    className={`tab-button ${activeTab === item ? 'active' : 'tab-button'}`}
-                                                    onClick={() => setActiveTab(item)}
-                                                >
-                                                    {item}
+                    <div className="container-fluid bg-light min-vh-100 p-4">
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-12">
+                                    <div className="bg-white shadow rounded mb-4">
+                                        <div className="p-3">
+                                            <h1 className="display-5 text-secondary fw-bold mb-4">MY LEARNING</h1>
+                                            <div className="text-muted">
+                                                <span className="fw-semibold mx-2">87hr 36min</span> watched •
+                                                <button className="btn btn-link text-primary p-0 ms-2">
+                                                    View all activity
                                                 </button>
-                                            </li>
+                                            </div>
+                                        </div>
+
+                                        <nav className="mb-4">
+                                            <ul className="nav nav-tabs border-bottom">
+                                                {['All courses', 'Learning paths', 'Certifications', 'Archived', 'Learning tools'].map((item) => (
+                                                    <li className="nav-item" key={item}>
+                                                        <button
+                                                            className={`nav-link ${activeTab === item ? 'active' : ''}`}
+                                                            onClick={() => setActiveTab(item)}
+                                                        >
+                                                            {item}
+                                                        </button>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </nav>
+                                    </div>
+
+                                    {/* Filters section - show only for All courses tab */}
+                                    {activeTab === 'All courses' && (
+                                        <div className="row g-4 mb-4 align-items-end">
+                                            <div className="col-12 col-md-3">
+                                                <h2 className="fs-6 fw-medium mb-2">Sort by</h2>
+                                                <FilterButton
+                                                    label="Recently Accessed"
+                                                    value={selectedSort}
+                                                    setValue={setSelectedSort}
+                                                />
+                                            </div>
+
+                                            <div className="col-12 col-md-6">
+                                                <h2 className="fs-6 fw-medium mb-2">Filter by</h2>
+                                                <div className="d-flex gap-3">
+                                                    <FilterButton
+                                                        label="Categories"
+                                                        value={selectedCategory}
+                                                        setValue={setSelectedCategory}
+                                                    />
+                                                    <FilterButton
+                                                        label="Progress"
+                                                        value={selectedProgress}
+                                                        setValue={setSelectedProgress}
+                                                    />
+                                                    <FilterButton
+                                                        label="Instructor"
+                                                        value={selectedInstructor}
+                                                        setValue={setSelectedInstructor}
+                                                    />
+                                                    <button className="btn btn-light shadow-sm">Reset</button>
+                                                </div>
+                                            </div>
+
+                                            <div className="col-12 col-md-3">
+                                                <div className="position-relative">
+                                                    <input
+                                                        type="text"
+                                                        placeholder="Search my courses"
+                                                        value={searchQuery}
+                                                        onChange={(e) => setSearchQuery(e.target.value)}
+                                                        className="form-control ps-4"
+                                                    />
+                                                    <i className="bi bi-search position-absolute top-50 start-0 translate-middle-y text-muted ms-2"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {/* Content section */}
+                                    <div className={`row row-cols-1 ${activeTab === 'All courses' ? 'row-cols-md-2 row-cols-lg-4' : ''} g-4`}>
+                                        {activeTab === 'All courses' && courses.map(course => (
+                                            <div className="col" key={course.id}>
+                                                <CourseCard course={course} />
+                                            </div>
                                         ))}
-                                    </ul>
-                                </nav>
-                            </div>
 
-                            {/* Filters section - show only for All courses tab */}
-                            {activeTab === 'All courses' && (
-                                <div className="flex flex-wrap items-end gap-4 mb-8">
-                                    <div className="flex-1 min-w-[200px]">
-                                        <h2 className="font-medium mb-2">Sort by</h2>
-                                        <FilterButton
-                                            label="Recently Accessed"
-                                            value={selectedSort}
-                                            setValue={setSelectedSort}
-                                        />
-                                    </div>
-
-                                    <div className="flex-[2] min-w-[200px]">
-                                        <h2 className="font-medium mb-2">Filter by</h2>
-                                        <div className="flex gap-4">
-                                            <FilterButton
-                                                label="Categories"
-                                                value={selectedCategory}
-                                                setValue={setSelectedCategory}
-                                            />
-                                            <FilterButton
-                                                label="Progress"
-                                                value={selectedProgress}
-                                                setValue={setSelectedProgress}
-                                            />
-                                            <FilterButton
-                                                label="Instructor"
-                                                value={selectedInstructor}
-                                                setValue={setSelectedInstructor}
-                                            />
-                                            <button className="flex items-center gap-2 px-4 py-2 rounded btn btn-light shadow-md hover:bg-gray-50">
-                                                Reset
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                    <div className="flex-1 min-w-[200px]">
-                                        <div className="relative align-bottom">
-                                            <input
-                                                type="text"
-                                                placeholder="Search my courses"
-                                                value={searchQuery}
-                                                onChange={(e) => setSearchQuery(e.target.value)}
-                                                className="w-full pl-10 pr-4 py-2 border rounded"
-                                            />
-                                            <span className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400">
-                                                🔍
-                                            </span>
-                                        </div>
+                                        {activeTab === 'Learning paths' && learningPaths.map(path => (
+                                            <div className="col" key={path.id}>
+                                                <LearningPathCard path={path} />
+                                            </div>
+                                        ))}
                                     </div>
                                 </div>
-                            )}
-
-                            {/* Content section */}
-                            <div className={activeTab === 'All courses' ?
-                                "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" :
-                                "grid grid-cols-1 gap-6"
-                            }>
-                                {activeTab === 'All courses' && courses.map(course => (
-                                    <CourseCard key={course.id} course={course} />
-                                ))}
-
-                                {activeTab === 'Learning paths' && learningPaths.map(path => (
-                                    <LearningPathCard key={path.id} path={path} />
-                                ))}
                             </div>
                         </div>
                     </div>
@@ -293,6 +356,17 @@
             root.render(<MyLearningDashboard />);
         </script>
     </main>
+
+    <footer class="bg-light text-center py-4">
+        <div class="container">
+            <p class="mb-0">&copy; 2024 THANIEL. All rights reserved.</p>
+            <div class="mt-2">
+                <a href="#" class="text-secondary mx-2">Privacy Policy</a>
+                <a href="#" class="text-secondary mx-2">Terms of Service</a>
+                <a href="#" class="text-secondary mx-2">Contact</a>
+            </div>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
