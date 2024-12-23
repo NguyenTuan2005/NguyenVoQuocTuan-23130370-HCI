@@ -158,16 +158,18 @@ const StudyMaterialsApp = () => {
                                 <td>
                                     <div className="btn-group gap-2" role="group">
                                         <button
-                                            className="btn btn-sm btn-outline-primary"
+                                            className="btn btn-sm btn-outline-secondary"
                                             onClick={() => handleFilePreview(material.url)}
+                                            title="Preview"
                                         >
-                                            <i className="fa fa-eye me-1"></i>Preview
+                                            <i className="fa fa-eye me-1"></i>
                                         </button>
                                         <button
-                                            className="btn btn-sm btn-outline-success"
+                                            className="btn btn-sm btn-outline-secondary"
                                             onClick={() => handleDownload(material.url, material.title + '.' + material.type)}
+                                            title="Download"
                                         >
-                                            <i className="fa fa-download me-1"></i>Download
+                                            <i className="fa fa-download me-1"></i>
                                         </button>
                                         <button
                                             className="btn btn-sm btn-outline-danger"
@@ -178,8 +180,9 @@ const StudyMaterialsApp = () => {
                                                     return updatedMaterials;
                                                 });
                                             }}
+                                            title="Delete"
                                         >
-                                            <i className="fa fa-trash me-1"></i>Delete
+                                            <i className="fa fa-trash me-1"></i>
                                         </button>
                                     </div>
                                 </td>
