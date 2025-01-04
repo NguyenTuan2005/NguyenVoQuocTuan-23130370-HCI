@@ -33,7 +33,8 @@ const galleryData = [
         id: 4,
         title: "Control table",
         images: [
-            "img/bang_dieu_khien.png"
+            "img/bang_dieu_khien.png",
+            "img/bang_dieu_khien(1).png"
         ],
         link: "https://duyhuunguyen.github.io/HotelManagerWeb/index.html"
     },
@@ -63,10 +64,10 @@ const ImageSlider = ({ images }) => {
     };
 
     return (
-        <div className="carousel slide" style={{ maxHeight: '300px' }}>
-            <div className="carousel-inner">
+        <div className="carousel slide" style={{ height: '200px' }}>
+            <div className="carousel-inner" style={{ height: '100%' }}>
                 {images.map((img, index) => (
-                    <div key={index} className={`carousel-item ${index === activeIndex ? 'active' : ''}`} style={{ maxHeight: '300px' }}>
+                    <div key={index} className={`carousel-item ${index === activeIndex ? 'active' : ''}`} style={{ height: '100%' }}>
                         <img src={img} className="d-block w-100" alt={`Slide ${index + 1}`} style={{ objectFit: 'cover', height: '100%' }} />
                     </div>
                 ))}
@@ -74,11 +75,11 @@ const ImageSlider = ({ images }) => {
             {images.length > 1 && (
                 <>
                     <button className="carousel-control-prev" type="button" onClick={prevSlide}>
-                        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span className="carousel-control-prev-icon" aria-hidden="true" style={{ filter: 'invert(1)' }}></span>
                         <span className="visually-hidden">Previous</span>
                     </button>
                     <button className="carousel-control-next" type="button" onClick={nextSlide}>
-                        <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span className="carousel-control-next-icon" aria-hidden="true" style={{ filter: 'invert(1)' }}></span>
                         <span className="visually-hidden">Next</span>
                     </button>
                 </>
@@ -90,9 +91,9 @@ const ImageSlider = ({ images }) => {
 const GalleryItem = ({ item }) => {
     return (
         <div className="col-md-4 mb-4">
-            <div className="card h-100">
+            <div className="card h-100 d-flex flex-column">
                 <ImageSlider images={item.images} />
-                <div className="card-body">
+                <div className="card-body mt-auto">
                     <h5 className="card-title">{item.title}</h5>
                     <a className="btn btn-primary mt-2" href={item.link} target="_blank" rel="noopener noreferrer">
                         View Page

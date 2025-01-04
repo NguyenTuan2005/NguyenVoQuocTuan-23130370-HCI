@@ -10,7 +10,7 @@ const App = () => {
                         <p className="mt-3 text-muted">
                             Explore the art of building visually stunning and user-friendly websites that bring ideas to life.
                         </p>
-                        <a href="#" className="btn btn-dark mt-3">HERE ME</a>
+                        <a href="about.html" className="btn btn-dark mt-3">HERE ME</a>
                     </div>
                     <div className="col-md-3">
                         <img

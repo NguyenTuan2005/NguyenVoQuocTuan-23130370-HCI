@@ -37,14 +37,14 @@ const StudyMaterialsApp = () => {
     const getFileIcon = (type) => {
         switch (type) {
             case 'doc':
-                return <i className="far fa-file-word text-primary"></i>;
+                return <i className="far fa-file-word text-secondary"></i>;
             case 'pdf':
-                return <i className="far fa-file-pdf text-danger"></i>;
+                return <i className="far fa-file-pdf text-secondary"></i>;
             case 'ppt':
-                return <i className="far fa-file-powerpoint text-warning"></i>;
+                return <i className="far fa-file-powerpoint text-secondary"></i>;
             case 'xls':
             case 'xlsx':
-                return <i className="far fa-file-excel text-success"></i>;
+                return <i className="far fa-file-excel text-secondary"></i>;
             default:
                 return <i className="far fa-file-alt text-secondary"></i>;
         }
