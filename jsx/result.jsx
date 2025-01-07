@@ -64,7 +64,7 @@ const ImageSlider = ({ images }) => {
     };
 
     return (
-        <div className="carousel slide" style={{ height: '200px' }}>
+        <div className="carousel slide p-2" style={{ height: '200px' }}>
             <div className="carousel-inner" style={{ height: '100%' }}>
                 {images.map((img, index) => (
                     <div key={index} className={`carousel-item ${index === activeIndex ? 'active' : ''}`} style={{ height: '100%' }}>
@@ -90,13 +90,13 @@ const ImageSlider = ({ images }) => {
 
 const GalleryItem = ({ item }) => {
     return (
-        <div className="col-md-4 mb-4">
-            <div className="card h-100 d-flex flex-column">
+        <div className="col-md-4 mb-2">
+            <div className="card h-100 d-flex flex-column shadow-lg">
                 <ImageSlider images={item.images} />
-                <div className="card-body mt-auto">
-                    <h5 className="card-title">{item.title}</h5>
-                    <a className="btn btn-primary mt-2" href={item.link} target="_blank" rel="noopener noreferrer">
-                        View Page
+                <div className="card-body d-flex justify-content-center align-items-center mt-auto">
+                    <h5 className="card-title flex-fill">{item.title}</h5>
+                    <a className="btn btn-sm btn-secondary" href={item.link} target="_blank" rel="noopener noreferrer" title="View details">
+                        <i className="fas fa-external-link-alt"></i>
                     </a>
                 </div>
             </div>
@@ -107,8 +107,8 @@ const GalleryItem = ({ item }) => {
 const App = () => {
     return (
         <div className="container py-5">
-            <h1 className="text-center mb-4">Web Template Design Elements</h1>
-            <div className="row g-4">
+            <h1 className="text-center fw-bold mb-4">Web Template Design Elements</h1>
+            <div className="row g-3">
                 {galleryData.map((item) => (
                     <GalleryItem key={item.id} item={item} />
                 ))}
