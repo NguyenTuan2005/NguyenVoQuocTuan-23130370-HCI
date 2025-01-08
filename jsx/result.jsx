@@ -31,7 +31,7 @@ const galleryData = [
     },
     {
         id: 4,
-        title: "Control table",
+        title: "Dashboard",
         images: [
             "img/bang_dieu_khien.png",
             "img/bang_dieu_khien(1).png"
@@ -40,7 +40,7 @@ const galleryData = [
     },
     {
         id: 5,
-        title: "List table",
+        title: "Rooms",
         images: [
             "img/danh_sach_phong.png"
         ],
