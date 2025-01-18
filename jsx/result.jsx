@@ -103,10 +103,10 @@ const GalleryItem = ({ item }) => {
         <div className="col-md-4 mb-2">
             <div className="card h-100 d-flex flex-column shadow-lg" style={{ transition: 'transform 0.3s', cursor: 'pointer' }} onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'} onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}>
                 <ImageSlider images={item.images} />
-                <a className="card-body d-flex flex-column justify-content-center align-items-center mt-auto text-decoration-none" href={item.link} target="_blank" rel="noopener noreferrer" title="View details">
+                <a className="card-body d-flex flex-column justify-content-center align-items-center mt-auto text-decoration-none" href={item.link} rel="noopener noreferrer" title="View details">
                     <div className="d-flex justify-content-center align-items-center w-100">
                         <h5 className="text-dark card-title flex-fill">{item.title}</h5>
-                        <a className="btn btn-sm mb-2" href={item.link} target="_blank" rel="noopener noreferrer" title="View details">
+                        <a className="btn btn-sm mb-2" href={item.link} rel="noopener noreferrer" title="View details">
                             <i className="fas fa-external-link-alt"></i>
                         </a>
                     </div>
