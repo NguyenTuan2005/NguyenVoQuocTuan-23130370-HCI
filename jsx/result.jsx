@@ -31,7 +31,7 @@ const galleryData = [
             "img/homestay_templateZ(2).png",
             "img/homestay_templateZ(3).png"
         ],
-        link: "https://duyhuunguyen.github.io/HotelManagerWeb/giaoDienNguoiDung/Pearl_Stand_Detail.html",
+        link: "https://duyhuunguyen.github.io/HotelManagerWeb/giaoDienNguoiDung/23130370_NguyenVoQuocTuan_Pearl_Stand_Detail.html",
         description: "Hotel detail page.",
         progress: 100
     },
@@ -42,7 +42,7 @@ const galleryData = [
             "img/bang_dieu_khien.png",
             "img/bang_dieu_khien(1).png"
         ],
-        link: "https://duyhuunguyen.github.io/HotelManagerWeb/index.html",
+        link: "https://duyhuunguyen.github.io/HotelManagerWeb/23130370_NguyenVoQuocTuan_dashboard.html",
         description: "Hotel management dashboard.",
         progress: 100
     },
@@ -52,7 +52,7 @@ const galleryData = [
         images: [
             "img/danh_sach_phong.png"
         ],
-        link: "https://duyhuunguyen.github.io/HotelManagerWeb/rooms.html",
+        link: "https://duyhuunguyen.github.io/HotelManagerWeb/23130370_NguyenVoQuocTuan_rooms.html",
         description: "List of hotel rooms.",
         progress: 100
     }
